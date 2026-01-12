@@ -1,0 +1,33 @@
+table {
+    background-color: rgb(84, 84, 84);
+    border-collapse: collapse;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+th {
+    color: rgb(220, 220, 220);
+}
+
+
+td {
+    background-color: rgb(103, 103, 103);
+}
+
+tr:last-child td:last-child   {
+    border-bottom-right-radius: 5px;
+}
+
+tr:last-child td:first-child  {
+    border-bottom-left-radius: 5px;
+}
+
+table {
+    margin: auto;
+
+    width: 500px;
+    height: 80px
+}
+
+
