@@ -1,0 +1,21 @@
+.name {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+div {
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  /* text-align: right; */
+}
