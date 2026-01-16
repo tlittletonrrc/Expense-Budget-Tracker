@@ -1,22 +1,47 @@
 import "./accountsOverview.css";
 
 function AccountsOverview() {
-    return(
-        <>
-            <div>
-                <p className="name">checking</p>
-                <p>coffee <span>-$10</span></p>
-                <p>lunch <span>-$18.50</span></p>
-                <p>groceries <span>-$72.19</span></p>
-                <p>bus fare <span>-$3.25</span></p>
-                <p>movie ticket <span>-$14</span></p>
-                <p>gaming subscription <span>-$9.99</span></p>
-                <p>gym membership <span>-$45</span></p>
-                <p>phone bill <span>-$62.80</span></p>
-                <p>gift card sale <span>+$25</span></p>
-                <p>cash deposit <span>+$100</span></p>
-            </div>
-        </>
-    );
+  const accounts = [
+    {
+      id: 1,
+      name: "Checking",
+      transactions: [
+        { id: 1, label: "coffee", amount: -10 },
+        { id: 2, label: "lunch", amount: -18.5 },
+        { id: 3, label: "groceries", amount: -72.19 },
+      ],
+    },
+    {
+      id: 2,
+      name: "Savings",
+      transactions: [
+        { id: 4, label: "paycheck", amount: 500 },
+        { id: 5, label: "interest", amount: 12.45 },
+      ],
+    },
+  ];
+
+  return (
+    <ul className="accounts-list">
+      {accounts.map((account) => (
+        <li key={account.id} className="account-item">
+          <p className="account-name">{account.name}</p>
+
+          <ul className="transactions-list">
+            {account.transactions.map((tx) => (
+              <li key={tx.id} className="transaction-item">
+                {tx.label}
+                <span className={tx.amount >= 0 ? "positive" : "negative"}>
+                  {tx.amount >= 0 ? "+" : "-"}$
+                  {Math.abs(tx.amount).toFixed(2)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  );
 }
+
 export default AccountsOverview;

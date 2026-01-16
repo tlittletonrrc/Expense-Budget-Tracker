@@ -1,21 +1,37 @@
-.name {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2em;
+.accounts-list {
+  list-style: none;
+  padding-left: 1.25em;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
 }
 
-
-div {
-  font-family: system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.account-item {
+  margin-bottom: 1em;
 }
 
-p {
+.account-name {
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+
+.transactions-list {
+  list-style-type: circle;
+  padding-left: 1.5em;
+  margin-top: 0.4em;
+}
+
+.transaction-item {
   display: flex;
   justify-content: space-between;
-  margin: 0;
-  /* text-align: right; */
+  width: 16em;
+  margin: 0.25em 0;
+  color: #eaeaea;
+}
+
+.transaction-item .positive {
+  color: #4ade80;
+}
+
+.transaction-item .negative {
+  color: #f87171;
 }
