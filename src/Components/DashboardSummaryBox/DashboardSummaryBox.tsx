@@ -2,7 +2,7 @@ import "./DashboardSummaryBox.css";
 
 function DashboardSummaryBox() {
     return(
-    <div> 
+    <div className="summary-box"> 
         <table>
             <tr>
                 <th>Account Balance</th>
