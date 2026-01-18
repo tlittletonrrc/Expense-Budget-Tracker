@@ -1,0 +1,37 @@
+.accounts-list {
+  list-style: none;
+  padding-left: 1.25em;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.account-item {
+  margin-bottom: 1em;
+}
+
+.account-name {
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+
+.transactions-list {
+  list-style-type: circle;
+  padding-left: 1.5em;
+  margin-top: 0.4em;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  width: 16em;
+  margin: 0.25em 0;
+  color: #eaeaea;
+}
+
+.transaction-item .positive {
+  color: #4ade80;
+}
+
+.transaction-item .negative {
+  color: #f87171;
+}
