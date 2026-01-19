@@ -1,8 +1,8 @@
-// import { useState } from 'react'
 import './App.css'
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
-
+import Navbar from './Components/Navbar/navbar';
+import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
 import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
 
 function App() {
@@ -10,8 +10,12 @@ function App() {
     <>
       <Header/>
 
+      <Navbar/>
+
       <DashboardSummaryBox/>
 
+      <AccountsOverview/>
+      
       <Footer/>
     </>
   )
