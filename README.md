@@ -1,3 +1,16 @@
+# Group Members - B Team
+- Tarryn Bereznycky
+- Thomas Littleton
+- Jashandeep Kaur
+
+# Project Overview
+A website that allows you to budget and keep track of all your finances so you can save money easier.
+
+# User Stories
+- As a user I want to track my expenses so I can easily keep track of my money.
+- as a user i want to set aside money for vacations and retirement
+- as a user i want to see a summary of my total balance on a single dashboard so i can understand my current financial snapshot
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
