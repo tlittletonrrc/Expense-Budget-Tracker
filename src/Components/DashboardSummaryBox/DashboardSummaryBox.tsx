@@ -1,25 +1,25 @@
 import "./DashboardSummaryBox.css";
 
+const Summary = [
+    {name: "Account Balance", value: 1000},
+    {name: "Left To Spend", value: 500},
+    {name: "Payments Due", value: 500}
+]
+
 function DashboardSummaryBox() {
     return(
     <div className="summary-box"> 
         <table>
             <tr>
-                <th>Account Balance</th>
-                <th>Left To Spend</th>
-                <th>Payments Due</th>
+                {Summary.map(item => (
+                    <th key={item.name}>{item.name}</th>
+                ))}
             </tr>
 
             <tr>
-                <td>
-                    $2000
-                </td>
-                <td>
-                    $1000
-                </td>
-                <td>
-                    January 1st, 2026
-                </td>
+                {Summary.map(item => (
+                    <td key={item.name}>{item.value}</td>
+                ))}
             </tr>
         </table>
     </div>
