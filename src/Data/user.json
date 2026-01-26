@@ -1,0 +1,8 @@
+{
+    "id": "user_001",
+    "name": "example",
+    "email": "example@rrc.ca",
+    "balance": 2000,
+    "goal": 500,
+    "due": "january 1st"
+}
