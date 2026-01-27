@@ -1,8 +1,15 @@
 {
-    "id": "user_001",
+    "userID": "user_001",
     "name": "example",
     "email": "example@rrc.ca",
     "balance": 2000,
-    "goal": 500,
-    "due": "january 1st"
+    "savingsGoal": 500,
+    "paymentsDue": "2026-01-01",
+    "allocations": [
+        {
+        "category": "Groceries",
+        "amount": 100,
+        "date": "2026-01-02"
+        }
+    ]
 }
