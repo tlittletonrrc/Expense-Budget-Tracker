@@ -28,7 +28,7 @@ function App() {
 
       <DashboardSummaryBox/>
 
-      <AccountsOverview/>
+      <AccountsOverview/> 
       
       <Footer/>
     </>
