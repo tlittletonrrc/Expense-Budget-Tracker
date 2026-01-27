@@ -15,9 +15,12 @@ export function budgetAllocation({
         const form = u.currentTarget;
         const formData = new FormData(form);
 
+        const item = formData.get("Item")
+        const amount = formData.get("Amount")
+
         setUser(prev =>({
             ...prev,
-            allocations:[form, formData]
+            allocations:[item, amount]
         }))
         
 
@@ -29,6 +32,7 @@ export function budgetAllocation({
                 <input type="text" name="Item" placeholder="Category" minLength={3} required/>
                 <input type="text" name="Amount" placeholder="Amount Allocated" minLength={3} required/>
                 <button type="submit">Submit</button>
+                <p></p>
             </form>
         </>
     )
