@@ -1,9 +1,10 @@
 import "./DashboardSummaryBox.css";
+import user from "../../Data/user.json"
 
 const Summary = [
-    {name: "Account Balance", value: 1000},
-    {name: "Left To Spend", value: 500},
-    {name: "Payments Due", value: 500}
+    {name: "Account Balance", value: user.balance},
+    {name: "Left To Spend", value: user.balance - user.savingsGoal},
+    {name: "Payments Due", value: user.paymentsDue}
 ]
 
 function DashboardSummaryBox() {
