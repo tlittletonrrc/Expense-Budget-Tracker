@@ -1,24 +1,20 @@
-import './App.css'
-import Footer from "./Components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+
 import Header from "./Components/Header/Header";
-import Navbar from './Components/Navbar/navbar';
-import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
-import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
+import Test from "./Components/test";
 
 function App() {
   return (
     <>
-      <Header/>
+      <Header />
 
-      <Navbar/>
-
-      <DashboardSummaryBox/>
-
-      <AccountsOverview/>
-      
-      <Footer/>
+      <Routes>
+        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/test" element={<Test />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
