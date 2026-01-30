@@ -7,7 +7,8 @@ import Header from "./Components/Header/Header";
 import Navbar from './Components/Navbar/navbar';
 import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
 import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
-
+import BudgetAllocationTable from './Components/BudgetAllocationTable/BudgetAllocationTable';
+import BudgetAllocationForm from './Components/BudgetAllocationForm/BudgetAllocationForm';
 
 
 function App() {
@@ -19,6 +20,11 @@ function App() {
       <Header/>
 
       <Navbar/>
+      
+      {/* Testing in here */}
+      <BudgetAllocationTable User={user}/>
+      <BudgetAllocationForm setUser={setUser}/>
+      {/* end */}
 
       <DashboardSummaryBox/>
 
