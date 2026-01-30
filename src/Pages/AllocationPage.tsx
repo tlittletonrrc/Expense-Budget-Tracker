@@ -2,10 +2,17 @@ import BudgetAllocationForm from "../Components/BudgetAllocationForm/BudgetAlloc
 import BudgetAllocationTable from "../Components/BudgetAllocationTable/BudgetAllocationTable";
 import type { UserType } from "../Types/UserType";
 
-function AllocationPage({SetUser, User}: {
+function AllocationPage({SetUser, User, setRoute}: {
     SetUser: React.Dispatch<React.SetStateAction<UserType>>
     User: UserType
+    setRoute: React.Dispatch<React.SetStateAction<string>>;
 }) {
+    //set the route 
+    function setPage() {
+        setRoute("/Allocations");
+    }
+
+    setPage()
 
     return(
         <>
