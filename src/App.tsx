@@ -16,7 +16,8 @@ import PiggyBank from "./Pages/PiggyBank"
 
 function App() {
   const [user, setUser] = useState<UserType>(userData)
-  const [route, setRoute] = useState("/")
+  const [route, setRoute] = useState<string>("/")
+  setRoute(route)
 
   return (
     <Router>
@@ -39,7 +40,7 @@ function App() {
         } />
         <Route path="/savings" element={<PiggyBank />} />
         <Route path="/accounts" element={<AccountsOverview/>} />
-        <Route path="/Allocations" element={<AllocationPage User={user} SetUser={setUser}/>} />
+        <Route path="/Allocations" element={<AllocationPage User={user} SetUser={setUser} setRoute={setRoute}/>} />
         <Route path="/expenses" element={<div>Expenses Page (Coming Soon)</div>} />
         <Route path="/reports" element={<div>Reports Page (Coming Soon)</div>} />
       </Routes>
