@@ -1,4 +1,5 @@
 # Group Members - B Team
+
 - Tarryn Bereznycky
 - Thomas Littleton
 - Jashandeep Kaur

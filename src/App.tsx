@@ -1,38 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import type { UserType } from './Types/UserType';
+import userData  from "./Data/user.json"
+
 import Footer from "./Components/Footer/Footer";
-import Header from "./Components/Header/Header"
+import Header from "./Components/Header/Header";
+import Navbar from './Components/Navbar/navbar';
+import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
+import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
+import AllocationPage from "./Pages/AllocationPage";
+import PiggyBank from "./Pages/PiggyBank"
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [user, setUser] = useState<UserType>(userData)
+  const [route, setRoute] = useState<string>("/")
+  console.log("You are in " + route)
+  
   return (
-    <>
+    <Router>
       <Header/>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar/>
+      
+ 
+      <Routes>
+        <Route path="/" element={
+          <>
+            <DashboardSummaryBox/>
+            <AccountsOverview/>
+          </>
+        } />
+        <Route path="/dashboard" element={
+          <>
+            <DashboardSummaryBox/>
+            <AccountsOverview/>
+          </>
+        } />
+        <Route path="/savings" element={<PiggyBank />} />
+        <Route path="/accounts" element={<AccountsOverview/>} />
+        <Route path="/Allocations" element={<AllocationPage User={user} SetUser={setUser} setRoute={setRoute}/>} />
+        <Route path="/expenses" element={<div>Expenses Page (Coming Soon)</div>} />
+        <Route path="/reports" element={<div>Reports Page (Coming Soon)</div>} />
+      </Routes>
+      
       <Footer/>
-    </>
+    </Router>
   )
 }
 
