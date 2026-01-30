@@ -7,7 +7,8 @@ function AllocationPage({SetUser, User, setRoute}: {
     User: UserType
     setRoute: React.Dispatch<React.SetStateAction<string>>;
 }) {
-    //set the route 
+
+    //set the route state
     function setPage() {
         setRoute("/Allocations");
     }
