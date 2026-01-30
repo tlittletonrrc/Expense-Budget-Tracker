@@ -17,14 +17,14 @@ import PiggyBank from "./Pages/PiggyBank"
 function App() {
   const [user, setUser] = useState<UserType>(userData)
   const [route, setRoute] = useState<string>("/")
-  setRoute(route)
-
+  console.log("You are in " + route)
+  
   return (
     <Router>
       <Header/>
       <Navbar/>
       
-
+ 
       <Routes>
         <Route path="/" element={
           <>
