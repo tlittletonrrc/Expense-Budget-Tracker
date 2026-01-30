@@ -22,8 +22,8 @@ const Navbar: React.FC = () => {
     },
     {
       id: 3,
-      label: 'Categories',
-      path: '/categories'
+      label: 'Allocations',
+      path: '/Allocations'
     },
     {
       id: 4,

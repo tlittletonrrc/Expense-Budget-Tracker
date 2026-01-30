@@ -1,18 +1,29 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import type { UserType } from './Types/UserType';
+import userData  from "./Data/user.json"
+
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Navbar from './Components/Navbar/navbar';
 import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
 import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
-import PiggyBank from './pages/PiggyBank';
+import AllocationPage from "./Pages/AllocationPage";
+import PiggyBank from "./Pages/PiggyBank"
+
 
 function App() {
+  const [user, setUser] = useState<UserType>(userData)
+  const [route, setRoute] = useState("/")
+
   return (
     <Router>
       <Header/>
       <Navbar/>
       
+
       <Routes>
         <Route path="/" element={
           <>
@@ -28,7 +39,7 @@ function App() {
         } />
         <Route path="/savings" element={<PiggyBank />} />
         <Route path="/accounts" element={<AccountsOverview/>} />
-        <Route path="/categories" element={<div>Categories Page (Coming Soon)</div>} />
+        <Route path="/Allocations" element={<AllocationPage User={user} SetUser={setUser}/>} />
         <Route path="/expenses" element={<div>Expenses Page (Coming Soon)</div>} />
         <Route path="/reports" element={<div>Reports Page (Coming Soon)</div>} />
       </Routes>
