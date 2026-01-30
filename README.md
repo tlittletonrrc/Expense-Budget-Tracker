@@ -12,6 +12,27 @@ A website that allows you to budget and keep track of all your finances so you c
 - as a user i want to set aside money for vacations and retirement
 - as a user i want to see a summary of my total balance on a single dashboard so i can understand my current financial snapshot
 
+# Sprint 2 Tasks
+### Tarryn
+- T.3 shared state across pages
+- I.1 Allocation Page
+- I.2 Allocation form
+- I.3 Allocation List Item Removal/Edit
+
+### Thomas
+- T.1 Multi-Page Navigation
+- I.1 Account Manager Page
+- I.2 Account Manager Form
+- I.3 Account Deletion
+
+### Jashandeep 
+- T.2 Navigation Interface
+- I.1 Piggy Bank
+- I.2 Piggy Bank Form
+- I.3 Piggy Bank Item Removal
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
