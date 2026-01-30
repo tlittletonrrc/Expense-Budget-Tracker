@@ -2,7 +2,17 @@ import "./BudgetAllocationTable.css"
 import type { UserType } from "../../Types/UserType";
 
 
-function BudgetAllocationTable( {User}:{User: UserType} ) {
+function BudgetAllocationTable( {User, SetUser}:
+    {User: UserType
+     SetUser: React.Dispatch<React.SetStateAction<UserType>>
+    } ) {
+
+    function deleteAllocation(index: number) {
+        SetUser({
+            ...User,
+            allocations: User.allocations.filter((_, i) => i !== index)
+    });
+}
 
     return(
         <>
@@ -10,6 +20,7 @@ function BudgetAllocationTable( {User}:{User: UserType} ) {
             <th>Category</th>
             <th>Amount Allocated</th>
             <th>Date Due</th>
+            <th>Delete</th>
 
         
             {User.allocations.map((a, index) => (
@@ -17,6 +28,7 @@ function BudgetAllocationTable( {User}:{User: UserType} ) {
                     <td>{a.category}</td>
                     <td>${a.amount}</td>
                     <td>{a.date}</td>
+                    <td><button className="allocation-button" onClick={() => deleteAllocation(index)}>Delete</button></td>
                 </tr>
             ))}
             

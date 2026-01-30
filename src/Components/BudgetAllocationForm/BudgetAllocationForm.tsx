@@ -3,9 +3,7 @@ import "./BudgetAllocationForm.css"
 import type { UserType } from "../../Types/UserType";
 
 
-function BudgetAllocationForm({
-    setUser
-    }: {
+function BudgetAllocationForm({setUser}: {
     setUser: React.Dispatch<React.SetStateAction<UserType>>
     }) {
     function addAllocation(u:React.FormEvent<HTMLFormElement>) {
