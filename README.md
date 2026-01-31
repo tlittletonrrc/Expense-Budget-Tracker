@@ -21,12 +21,12 @@ A website that allows you to budget and keep track of all your finances so you c
 
 ### Thomas
 - T.1 Multi-Page Navigation
-- I.1 Account Manager Page
-- I.2 Account Manager Form
-- I.3 Account Deletion
+- T.2 Navigation Interface
+- I.1 Account Overview Page
+- I.2 Account Overview Form
+- I.3 Account Overview Deletion
 
 ### Jashandeep 
-- T.2 Navigation Interface
 - I.1 Piggy Bank
 - I.2 Piggy Bank Form
 - I.3 Piggy Bank Item Removal
