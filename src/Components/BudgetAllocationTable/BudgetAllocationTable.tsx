@@ -17,19 +17,25 @@ function BudgetAllocationTable( {User, SetUser}:
     return(
         <>
         <table>
-            <th>Category</th>
-            <th>Amount Allocated</th>
-            <th>Date Due</th>
-            <th>Delete</th>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount Allocated</th>
+                    <th>Date Due</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
 
         
             {User.allocations.map((a, index) => (
-                <tr key={index}>
-                    <td>{a.category}</td>
-                    <td>${a.amount}</td>
-                    <td>{a.date}</td>
-                    <td><button className="allocation-button" onClick={() => deleteAllocation(index)}>Delete</button></td>
-                </tr>
+                <tbody>
+                    <tr key={index}>
+                        <td>{a.category}</td>
+                        <td>${a.amount}</td>
+                        <td>{a.date}</td>
+                        <td><button className="allocation-button" onClick={() => deleteAllocation(index)}>Delete</button></td>
+                    </tr>
+                </tbody>
             ))}
             
         </table>

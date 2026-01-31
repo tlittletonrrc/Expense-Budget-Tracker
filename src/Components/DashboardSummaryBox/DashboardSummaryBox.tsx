@@ -11,17 +11,19 @@ function DashboardSummaryBox() {
     return(
     <div className="summary-box"> 
         <table>
-            <tr>
-                {Summary.map(item => (
-                    <th key={item.name}>{item.name}</th>
-                ))}
-            </tr>
+            <tbody>
+                <tr>
+                    {Summary.map(item => (
+                        <th key={item.name}>{item.name}</th>
+                    ))}
+                </tr>
 
-            <tr>
-                {Summary.map(item => (
-                    <td key={item.name}>{item.value}</td>
-                ))}
-            </tr>
+                <tr>
+                    {Summary.map(item => (
+                        <td key={item.name}>{item.value}</td>
+                    ))}
+                </tr>
+            </tbody>
         </table>
     </div>
 );
