@@ -12,7 +12,7 @@ A website that allows you to budget and keep track of all your finances so you c
 - as a user i want to set aside money for vacations and retirement
 - as a user i want to see a summary of my total balance on a single dashboard so i can understand my current financial snapshot
 
-# Sprint 2 Tasks
+## Sprint 2 Tasks
 ### Tarryn
 - T.3 shared state across pages
 - I.1 Allocation Page
