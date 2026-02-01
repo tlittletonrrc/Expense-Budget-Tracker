@@ -11,7 +11,7 @@ import Navbar from './Components/Navbar/navbar';
 import AccountsOverview from "./Components/AccountsOverview/accountsOverview"
 import DashboardSummaryBox from './Components/DashboardSummaryBox/DashboardSummaryBox';
 import AllocationPage from "./Pages/AllocationPage";
-import PiggyBank from "./Pages/PiggyBank"
+import PiggyBank from "./Pages/PiggyBank.tsx"
 import AccountsOverviewPage from "./Pages/accountsOverviewPage"
 
 
