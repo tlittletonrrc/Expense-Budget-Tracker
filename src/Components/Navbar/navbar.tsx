@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 interface NavItem {
@@ -21,8 +22,8 @@ const Navbar: React.FC = () => {
     },
     {
       id: 3,
-      label: 'Categories',
-      path: '/categories'
+      label: 'Allocations',
+      path: '/Allocations'
     },
     {
       id: 4,
@@ -50,9 +51,9 @@ const Navbar: React.FC = () => {
       <ul className="nav-list">
         {navItems.map((item) => (
           <li key={item.id} className="nav-item">
-            <a href={item.path} className="nav-link">
+            <Link to={item.path} className="nav-link">
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
