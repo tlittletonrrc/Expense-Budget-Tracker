@@ -11,5 +11,13 @@
         "amount": 100,
         "date": "2026-01-02"
         }
+    ],
+    "accounts": [
+        {
+        "role": "Default asset",
+        "name": "Main Checking",
+        "accountNumber": "123456789",
+        "balance": 1250.75
+        }
     ]
 }
