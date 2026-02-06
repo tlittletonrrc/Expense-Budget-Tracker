@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createAllocation, deleteAllocationService } from "../Repositories/AllocationRepository";
 
 
 /**
@@ -93,10 +94,12 @@ export function useUserProfileDisplay(user: {
 
             return [...prev, newAllocation];
         });
+        createAllocation(newAllocation)
     };
 
     const deleteAllocation = (index: number) => {
         setAllocations(prev => prev.filter((_, i) => i !== index));
+        deleteAllocationService(index)
     };
 
 

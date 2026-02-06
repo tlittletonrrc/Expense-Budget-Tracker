@@ -9,17 +9,14 @@ import { getAllAllocations } from "../Repositories/AllocationRepository";
 import { useUserProfileDisplay } from "../hooks/JsonHook";
 
 // Types
-import type { UserType } from "../Types/UserType";
+//import type { UserType } from "../Types/UserType";
 
 
-function AllocationPage({User, setRoute}: {
-    SetUser: React.Dispatch<React.SetStateAction<UserType>>
-    User: UserType
-    setRoute: React.Dispatch<React.SetStateAction<string>>;
-}) {
+function AllocationPage() {
 
     //sets the route state
-    function setPage() {setRoute("/Allocations")}
+    //function setPage() {setRoute("/Allocations")}
+    // setPage()
 
     const user = getAllAllocations()
     const userProfile = useUserProfileDisplay({
@@ -28,11 +25,10 @@ function AllocationPage({User, setRoute}: {
         accounts: [],
     });
 
-    setPage()
 
     return(
         <>
-        <BudgetAllocationTable deleteAllocation={userProfile.deleteAllocation} User={{ ...User, allocations: userProfile.allocations }}/>
+        <BudgetAllocationTable deleteAllocation={userProfile.deleteAllocation} User={{ ...user, allocations: userProfile.allocations }}/>
         <BudgetAllocationForm addAllocation={userProfile.addAllocation}/>
         </>
 )}
