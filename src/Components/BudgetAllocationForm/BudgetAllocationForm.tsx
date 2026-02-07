@@ -1,12 +1,7 @@
 import "./BudgetAllocationForm.css"
-//import Navbar from './Components/Navbar/navbar';
-import type { UserType } from "../../Types/UserType";
 
-
-function BudgetAllocationForm({setUser}: {
-    setUser: React.Dispatch<React.SetStateAction<UserType>>
-    }) {
-    function addAllocation(u:React.FormEvent<HTMLFormElement>) {
+function BudgetAllocationForm({addAllocation}: {addAllocation: (allocation: { category: string; amount: number; date: string }) => void}) {
+    function createAllocation(u:React.FormEvent<HTMLFormElement>) {
         u.preventDefault()
 
         const form = u.currentTarget;
@@ -18,28 +13,12 @@ function BudgetAllocationForm({setUser}: {
 
         const newAllocation = { category: item, amount, date };
 
-        setUser(prev => {
-            const exists = prev.allocations.some(a => a.category === item);
-
-            if (exists) {
-                return {
-                    ...prev,
-                    allocations: prev.allocations.map(a =>
-                        a.category === item ? { ...a, amount, date } : a
-                        )
-                    };
-                }
-            return {
-                ...prev,
-                allocations: [...prev.allocations, newAllocation]
-            }
-        }
-    )
+        addAllocation(newAllocation)
 };
 
     return(
         <>
-            <form className="allocation-form" onSubmit={addAllocation}>
+            <form className="allocation-form" onSubmit={createAllocation}>
                 <h4 className="allocation-form-title">New Allocation</h4>
                 <div className="inputs">
                     <input className="input-bar" type="text" name="Item" placeholder="Category" minLength={3} required/>

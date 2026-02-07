@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createAllocation, deleteAllocationService } from "../Repositories/AllocationRepository";
 
 
 /**
@@ -16,6 +17,7 @@ import { useState } from "react";
  *  setBalance: (newBalance: number) => void - Updates the displayed balance (UI only)
  *  updateSavingsGoal: (newGoal: number) => void - Updates the savings goal (UI only)
  *  addAllocation: (allocation) => void - Adds a new allocation (UI only)
+ *  deleteAllocation: (allocation) => void - deletes an allocation (UI only)
  *  addPaymentDue: (paymentDate: string) => void - Adds a new payment due (UI only)
  *  updateAccountBalance: (accountNumber: string, newBalance: number) => void - Updates the balance of a specific account (UI only)
  *  addAccount: (account) => void - Adds a new account (UI only)
@@ -50,14 +52,6 @@ export function useUserProfileDisplay(user: {
         setSavingsGoal(newGoal);
     };
 
-    const addAllocation = (allocation: {
-        category: string;
-        amount: number;
-        date: string;
-    }) => {
-        setAllocations((prev) => [...prev, allocation]);
-    };
-
     const addPaymentDue = (paymentDate: string) => {
         setPaymentsDue((prev) => [...prev, paymentDate]);
     };
@@ -81,6 +75,35 @@ export function useUserProfileDisplay(user: {
         setAccounts((prev) => [...prev, account]);
     };
 
+
+    const addAllocation = (newAllocation: {
+        category: string;
+        amount: number;
+        date: string;
+    }) => {
+        setAllocations(prev => {
+            const exists = prev.some(a => a.category === newAllocation.category);
+
+            if (exists) {
+                return prev.map(a =>
+                    a.category === newAllocation.category
+                        ? { ...a, amount: newAllocation.amount, date: newAllocation.date }
+                        : a
+                );
+            }
+
+            return [...prev, newAllocation];
+        });
+        createAllocation(newAllocation)
+    };
+
+    const deleteAllocation = (index: number) => {
+        setAllocations(prev => prev.filter((_, i) => i !== index));
+        deleteAllocationService(index)
+    };
+
+
+
     return {
         name: user.name,
         email: user.email,
@@ -93,6 +116,7 @@ export function useUserProfileDisplay(user: {
         setBalance,
         updateSavingsGoal,
         addAllocation,
+        deleteAllocation,
         addPaymentDue,
         updateAccountBalance,
         addAccount,

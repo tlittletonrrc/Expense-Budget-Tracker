@@ -2,17 +2,10 @@ import "./BudgetAllocationTable.css"
 import type { UserType } from "../../Types/UserType";
 
 
-function BudgetAllocationTable( {User, SetUser}:
+function BudgetAllocationTable( {User, deleteAllocation}:
     {User: UserType
-     SetUser: React.Dispatch<React.SetStateAction<UserType>>
-    } ) {
-
-    function deleteAllocation(index: number) {
-        SetUser({
-            ...User,
-            allocations: User.allocations.filter((_, i) => i !== index)
-    });
-}
+     deleteAllocation: (index: number) => void;
+    }) {
 
     return(
         <>

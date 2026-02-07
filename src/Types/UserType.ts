@@ -6,6 +6,6 @@ export type UserType = {
     email: string,
     balance: number,
     savingsGoal: number,
-    paymentsDue: string
+    paymentsDue: string,
     allocations: Allocation[]
 }

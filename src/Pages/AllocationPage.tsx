@@ -1,24 +1,35 @@
+// Components
 import BudgetAllocationForm from "../Components/BudgetAllocationForm/BudgetAllocationForm";
 import BudgetAllocationTable from "../Components/BudgetAllocationTable/BudgetAllocationTable";
-import type { UserType } from "../Types/UserType";
 
-function AllocationPage({SetUser, User, setRoute}: {
-    SetUser: React.Dispatch<React.SetStateAction<UserType>>
-    User: UserType
-    setRoute: React.Dispatch<React.SetStateAction<string>>;
-}) {
+// Data
+import { getAllAllocations } from "../Repositories/AllocationRepository";
 
-    //set the route state
-    function setPage() {
-        setRoute("/Allocations");
-    }
+// Hooks
+import { useUserProfileDisplay } from "../hooks/JsonHook";
 
-    setPage()
+// Types
+//import type { UserType } from "../Types/UserType";
+
+
+function AllocationPage() {
+
+    //sets the route state
+    //function setPage() {setRoute("/Allocations")}
+    // setPage()
+
+    const user = getAllAllocations()
+    const userProfile = useUserProfileDisplay({
+        ...user,
+        paymentsDue: Array.isArray(user.paymentsDue) ? user.paymentsDue : [user.paymentsDue], 
+        accounts: [],
+    });
+
 
     return(
         <>
-        <BudgetAllocationTable SetUser={SetUser} User={User}/>
-        <BudgetAllocationForm setUser={SetUser}/>
+        <BudgetAllocationTable deleteAllocation={userProfile.deleteAllocation} User={{ ...user, allocations: userProfile.allocations }}/>
+        <BudgetAllocationForm addAllocation={userProfile.addAllocation}/>
         </>
 )}
 
