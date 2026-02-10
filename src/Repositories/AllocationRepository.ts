@@ -1,27 +1,33 @@
-import type { UserType } from "../Types/UserType"
 import users from "../Data/user.json"
+import type { UserType } from "../Types/UserType"
+import type { userData } from "../Types/userData"
+import * as userService from "../Services/UserService"
 
-export function getAllAllocations(): UserType {
-    return users
+
+export function getAllUsers(): userData {
+    return users 
 }
 
-export function createAllocation(newAllocation: { category: string; amount: number; date: string }): UserType {
-    const exists = users.allocations.some(a => a.category === newAllocation.category);
+export const GetUserByID = (UserID: string): UserType | undefined => {
+    const user = users.users.find(u => u.userID === UserID)
 
-    if (exists) {
-        users.allocations = users.allocations.map(a =>
-            a.category === newAllocation.category
-                ? { ...a, amount: newAllocation.amount, date: newAllocation.date }
-                : a
-        );
-    } else {
-        users.allocations.push(newAllocation);
-    }
-
-    return users; 
+    return user
 }
 
-export function deleteAllocationService(index: number): UserType {
-    users.allocations = users.allocations.filter((_, i) => i !== index);
-    return users;
+export function updateAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string } ): UserType {
+    
+    const user = userService.getUserByIDService(UserID)
+
+    user.allocations = user.allocations.map(a =>
+        a.category === newAllocation.category
+            ? { ...a, amount: newAllocation.amount, date: newAllocation.date }: a
+    );
+    
+    return user; 
+}
+
+export function createAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string }) {
+    const user = userService.getUserByIDService(UserID)
+
+    user.allocations.push(newAllocation);
 }

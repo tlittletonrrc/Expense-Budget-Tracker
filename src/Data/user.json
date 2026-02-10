@@ -1,23 +1,163 @@
 {
-    "userID": "user_001",
-    "name": "example",
-    "email": "example@rrc.ca",
-    "balance": 2000,
-    "savingsGoal": 500,
-    "paymentsDue": "2026-01-01",
-    "allocations": [
+    "users": [
         {
-        "category": "Groceries",
-        "amount": 100,
-        "date": "2026-01-02"
-        }
-    ],
-    "accounts": [
+        "userID": "user_001",
+        "name": "Tarryn",
+        "email": "Tarryn@rrc.ca",
+        "balance": 2000,
+        "savingsGoal": 500,
+        "paymentsDue": "2026-01-01",
+        "allocations": [
+            { "category": "Rent", "amount": 750, "date": "2026-01-05" },
+            { "category": "Groceries", "amount": 180, "date": "2026-01-08" },
+            { "category": "Internet", "amount": 90, "date": "2026-01-12" },
+            { "category": "Transportation", "amount": 120, "date": "2026-01-15" },
+            { "category": "Entertainment", "amount": 140, "date": "2026-01-20" }
+        ]
+        },
+
         {
-        "role": "Default asset",
-        "name": "Main Checking",
-        "accountNumber": "123456789",
-        "balance": 1250.75
+        "userID": "user_002",
+        "name": "Alex",
+        "email": "alex@rrc.ca",
+        "balance": 3500,
+        "savingsGoal": 8000,
+        "paymentsDue": "2026-02-10",
+        "allocations": [
+            { "category": "Mortgage", "amount": 1200, "date": "2026-02-01" },
+            { "category": "Groceries", "amount": 220, "date": "2026-02-06" },
+            { "category": "Utilities", "amount": 160, "date": "2026-02-09" },
+            { "category": "Gas", "amount": 140, "date": "2026-02-14" },
+            { "category": "Subscriptions", "amount": 75, "date": "2026-02-18" }
+        ]
+        },
+
+        {
+        "userID": "user_003",
+        "name": "Jordan",
+        "email": "jordan@rrc.ca",
+        "balance": 1200,
+        "savingsGoal": 3000,
+        "paymentsDue": "2026-01-25",
+        "allocations": [
+            { "category": "Public Transit", "amount": 110, "date": "2026-01-03" },
+            { "category": "Groceries", "amount": 160, "date": "2026-01-07" },
+            { "category": "Phone Bill", "amount": 85, "date": "2026-01-11" },
+            { "category": "Dining Out", "amount": 130, "date": "2026-01-17" },
+            { "category": "Entertainment", "amount": 90, "date": "2026-01-22" }
+        ]
+        },
+
+        {
+        "userID": "user_004",
+        "name": "Morgan",
+        "email": "morgan@rrc.ca",
+        "balance": 6200,
+        "savingsGoal": 15000,
+        "paymentsDue": "2026-03-12",
+        "allocations": [
+            { "category": "Insurance", "amount": 420, "date": "2026-03-02" },
+            { "category": "Groceries", "amount": 210, "date": "2026-03-06" },
+            { "category": "Utilities", "amount": 175, "date": "2026-03-09" },
+            { "category": "Gas", "amount": 150, "date": "2026-03-14" },
+            { "category": "Hobbies", "amount": 200, "date": "2026-03-20" }
+        ]
+        },
+
+        {
+        "userID": "user_005",
+        "name": "Sam",
+        "email": "sam@rrc.ca",
+        "balance": 900,
+        "savingsGoal": 2500,
+        "paymentsDue": "2026-01-30",
+        "allocations": [
+            { "category": "Streaming Services", "amount": 65, "date": "2026-01-04" },
+            { "category": "Groceries", "amount": 140, "date": "2026-01-09" },
+            { "category": "Utilities", "amount": 95, "date": "2026-01-13" },
+            { "category": "Gas", "amount": 110, "date": "2026-01-18" },
+            { "category": "Fun Money", "amount": 80, "date": "2026-01-24" }
+        ]
+        },
+
+        {
+        "userID": "user_006",
+        "name": "Taylor",
+        "email": "taylor@rrc.ca",
+        "balance": 4100,
+        "savingsGoal": 10000,
+        "paymentsDue": "2026-02-18",
+        "allocations": [
+            { "category": "Subscriptions", "amount": 120, "date": "2026-02-03" },
+            { "category": "Groceries", "amount": 200, "date": "2026-02-07" },
+            { "category": "Utilities", "amount": 155, "date": "2026-02-11" },
+            { "category": "Gas", "amount": 135, "date": "2026-02-16" },
+            { "category": "Dining Out", "amount": 170, "date": "2026-02-22" }
+        ]
+        },
+
+        {
+        "userID": "user_007",
+        "name": "Chris",
+        "email": "chris@rrc.ca",
+        "balance": 7800,
+        "savingsGoal": 25000,
+        "paymentsDue": "2026-04-01",
+        "allocations": [
+            { "category": "Vacation Fund", "amount": 1500, "date": "2026-03-10" },
+            { "category": "Groceries", "amount": 240, "date": "2026-03-14" },
+            { "category": "Utilities", "amount": 190, "date": "2026-03-18" },
+            { "category": "Gas", "amount": 160, "date": "2026-03-22" },
+            { "category": "Entertainment", "amount": 300, "date": "2026-03-27" }
+        ]
+        },
+
+        {
+        "userID": "user_008",
+        "name": "Jamie",
+        "email": "jamie@rrc.ca",
+        "balance": 2600,
+        "savingsGoal": 7000,
+        "paymentsDue": "2026-03-05",
+        "allocations": [
+            { "category": "Phone Bill", "amount": 95, "date": "2026-03-01" },
+            { "category": "Groceries", "amount": 185, "date": "2026-03-06" },
+            { "category": "Utilities", "amount": 140, "date": "2026-03-10" },
+            { "category": "Gas", "amount": 125, "date": "2026-03-15" },
+            { "category": "Clothing", "amount": 220, "date": "2026-03-21" }
+        ]
+        },
+
+        {
+        "userID": "user_009",
+        "name": "Riley",
+        "email": "riley@rrc.ca",
+        "balance": 10200,
+        "savingsGoal": 40000,
+        "paymentsDue": "2026-05-01",
+        "allocations": [
+            { "category": "Investments", "amount": 2500, "date": "2026-04-05" },
+            { "category": "Groceries", "amount": 260, "date": "2026-04-09" },
+            { "category": "Utilities", "amount": 210, "date": "2026-04-13" },
+            { "category": "Gas", "amount": 180, "date": "2026-04-18" },
+            { "category": "Travel Savings", "amount": 500, "date": "2026-04-24" }
+        ]
+        },
+
+        {
+        "userID": "user_010",
+        "name": "Casey",
+        "email": "casey@rrc.ca",
+        "balance": 3100,
+        "savingsGoal": 12000,
+        "paymentsDue": "2026-02-08",
+        "allocations": [
+            { "category": "Tuition", "amount": 800, "date": "2026-01-28" },
+            { "category": "Groceries", "amount": 170, "date": "2026-02-03" },
+            { "category": "Utilities", "amount": 150, "date": "2026-02-07" },
+            { "category": "Gas", "amount": 130, "date": "2026-02-12" },
+            { "category": "Fun Money", "amount": 160, "date": "2026-02-18" }
+        ]
         }
     ]
 }
