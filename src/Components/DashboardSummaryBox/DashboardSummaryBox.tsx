@@ -1,13 +1,21 @@
 import "./DashboardSummaryBox.css";
-import user from "../../Data/user.json"
+import { useUserProfileDisplay } from "../../hooks/JsonHook";
+import * as userService from "../../Services/UserService";
 
-const Summary = [
-    {name: "Account Balance", value: user.balance},
-    {name: "Left To Spend", value: user.balance - user.savingsGoal},
-    {name: "Payments Due", value: user.paymentsDue}
-]
 
 function DashboardSummaryBox() {
+    const user = userService.getUserByIDService("user_001")
+    const userProfile = useUserProfileDisplay({
+            ...user,
+            accounts: [],
+        });
+    
+    const Summary = [
+        {name: "Account Balance", value: userProfile.balance},
+        {name: "Left To Spend", value: userProfile.balance - userProfile.savingsGoal},
+        {name: "Payments Due", value: userProfile.paymentsDue}
+    ]
+
     return(
     <div className="summary-box"> 
         <table>

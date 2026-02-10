@@ -31,7 +31,6 @@ function AllocationPage() {
     const user = allocationService.getAllocationByUserIDService("user_001") // Temporarily Hardcoded
     const userProfile = useUserProfileDisplay({
         ...user,
-        paymentsDue: Array.isArray(user.paymentsDue) ? user.paymentsDue : [user.paymentsDue], 
         accounts: [],
     });
 

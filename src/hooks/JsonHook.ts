@@ -29,7 +29,7 @@ export function useUserProfileDisplay(user: {
     email: string;
     balance: number;
     savingsGoal: number;
-    paymentsDue: string[];
+    paymentsDue: string;
     allocations: {
         category: string;
         amount: number;
@@ -53,7 +53,7 @@ export function useUserProfileDisplay(user: {
     };
 
     const addPaymentDue = (paymentDate: string) => {
-        setPaymentsDue((prev) => [...prev, paymentDate]);
+        setPaymentsDue(paymentDate); 
     };
 
     const updateAccountBalance = (accountNumber: string, newBalance: number) => {
