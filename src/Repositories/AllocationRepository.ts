@@ -1,13 +1,11 @@
 import * as userService from "../Services/UserService"
-
 import type { UserType } from "../Types/UserType"
-import type { Allocation } from "../Types/Allocation"
 
 
 
-export function getAllocationByUser(UserID: string): Allocation[] {
+export function getAllocationByUser(UserID: string): UserType {
     const user = userService.getUserByIDService(UserID)
-    return user.allocations
+    return user
 }
 
 
