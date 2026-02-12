@@ -1,5 +1,5 @@
-//import type { UserType } from "../Types/UserType";
-import * as repo from "../Repositories/AllocationRepository"
+import * as repo from "../Repositories/UserRepository"
+
 
 
 export function getAllUserService() {
@@ -11,6 +11,7 @@ export function getAllUserService() {
 
     return users
 }
+
 
 export function getUserByIDService(UserID: string) {
     const user = repo.GetUserByID(UserID)

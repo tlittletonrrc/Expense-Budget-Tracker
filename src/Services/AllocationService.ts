@@ -1,7 +1,8 @@
 import type { Allocation } from "../Types/Allocation";
-import type { UserType } from "../Types/UserType";
+//import type { UserType } from "../Types/UserType";
 import * as repo from "../Repositories/AllocationRepository"
 import * as userService from "./UserService"
+
 
 
 export function getAllocationByUserIDService(UserID: string) {
@@ -31,10 +32,11 @@ export function createAllocationService(UserID: string, NewAllocation: Allocatio
 }
 
 
-export function deleteAllocationService(UserID: string, index: number): UserType {
-    const user = userService.getUserByIDService(UserID)
-    user.allocations = user.allocations.filter((_, i) => i !== index);
+export function deleteAllocationService(userID:string, index:number) {
+    if (!userID) {
+        throw new Error("Missing or invalid UserID")
+    }
 
-    return user;
+    repo.deleteAllocation(userID, index)
+
 }
-

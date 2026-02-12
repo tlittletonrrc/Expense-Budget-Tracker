@@ -1,21 +1,17 @@
-import users from "../Data/user.json"
-import type { UserType } from "../Types/UserType"
-import type { userData } from "../Types/userData"
 import * as userService from "../Services/UserService"
 
+import type { UserType } from "../Types/UserType"
+import type { Allocation } from "../Types/Allocation"
 
-export function getAllUsers(): userData {
-    return users 
+
+
+export function getAllocationByUser(UserID: string): Allocation[] {
+    const user = userService.getUserByIDService(UserID)
+    return user.allocations
 }
 
-export const GetUserByID = (UserID: string): UserType | undefined => {
-    const user = users.users.find(u => u.userID === UserID)
 
-    return user
-}
-
-export function updateAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string } ): UserType {
-    
+export function updateAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string } ): UserType {  
     const user = userService.getUserByIDService(UserID)
 
     user.allocations = user.allocations.map(a =>
@@ -26,8 +22,17 @@ export function updateAllocation(UserID: string, newAllocation: { category: stri
     return user; 
 }
 
+
 export function createAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string }) {
     const user = userService.getUserByIDService(UserID)
 
     user.allocations.push(newAllocation);
+}
+
+
+export function deleteAllocation(UserID: string, index: number): UserType {
+    const user = userService.getUserByIDService(UserID)
+    user.allocations = user.allocations.filter((_, i) => i !== index);
+
+    return user;
 }
