@@ -6,7 +6,7 @@ import * as userService from "./UserService"
 
 
 export function getAllocationByUserIDService(UserID: string) {
-    const user = userService.getUserByIDService(UserID)
+    const user = repo.getAllocationByUser(UserID)
     
     if (!user) {
         throw new Error("No user by that id")
@@ -19,6 +19,10 @@ export function getAllocationByUserIDService(UserID: string) {
 export function createAllocationService(UserID: string, NewAllocation: Allocation) {
     const user = userService.getUserByIDService(UserID)
     const exists = user.allocations.some(a => a.category === NewAllocation.category);
+
+    if (!user) {
+        throw new Error("User Not Found.")
+    }
 
     if (!NewAllocation.amount || !NewAllocation.category || !NewAllocation.date) {
         throw new Error("Missing input.")
