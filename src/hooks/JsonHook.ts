@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createAllocation, deleteAllocationService } from "../Repositories/AllocationRepository";
+import * as allocationService from "../Services/AllocationService"
 
 
 /**
@@ -29,7 +29,7 @@ export function useUserProfileDisplay(user: {
     email: string;
     balance: number;
     savingsGoal: number;
-    paymentsDue: string[];
+    paymentsDue: string;
     allocations: {
         category: string;
         amount: number;
@@ -53,7 +53,7 @@ export function useUserProfileDisplay(user: {
     };
 
     const addPaymentDue = (paymentDate: string) => {
-        setPaymentsDue((prev) => [...prev, paymentDate]);
+        setPaymentsDue(paymentDate); 
     };
 
     const updateAccountBalance = (accountNumber: string, newBalance: number) => {
@@ -76,7 +76,7 @@ export function useUserProfileDisplay(user: {
     };
 
 
-    const addAllocation = (newAllocation: {
+    const addAllocation = (UserID: string, newAllocation: {
         category: string;
         amount: number;
         date: string;
@@ -94,12 +94,13 @@ export function useUserProfileDisplay(user: {
 
             return [...prev, newAllocation];
         });
-        createAllocation(newAllocation)
+        allocationService.createAllocationService(UserID, newAllocation)
     };
 
-    const deleteAllocation = (index: number) => {
+    const deleteAllocation = (UserID: string, index: number) => {
         setAllocations(prev => prev.filter((_, i) => i !== index));
-        deleteAllocationService(index)
+
+        allocationService.deleteAllocationService(UserID, index)
     };
 
 
