@@ -1,7 +1,27 @@
-/* Needed for summary box component */
+/* Container for main content to account for sidebar */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+
 #root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* Summary box component styling */
+.dashboard-summary-box {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+}  
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
 }
