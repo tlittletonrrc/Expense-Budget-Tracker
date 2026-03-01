@@ -17,26 +17,31 @@ const Navbar: React.FC = () => {
     },
     {
       id: 2,
+      label: 'User Dashboard', 
+      path: '/user-dashboard'
+    },
+    {
+      id: 3,
       label: 'Accounts',
       path: '/accounts'
     },
     {
-      id: 3,
+      id: 4,
       label: 'Allocations',
       path: '/Allocations'
     },
     {
-      id: 4,
+      id: 5,
       label: 'Expenses',
       path: '/expenses'
     },
     {
-      id: 5,
+      id: 6,
       label: 'Savings',
       path: '/savings'
     },
     {
-      id: 6,
+      id: 7,
       label: 'Reports',
       path: '/reports'
     }
@@ -47,7 +52,6 @@ const Navbar: React.FC = () => {
       <div className="navbar-header">
         <h2>expense budget tracker</h2>
       </div>
-
       <ul className="nav-list">
         {navItems.map((item) => (
           <li key={item.id} className="nav-item">
@@ -57,7 +61,6 @@ const Navbar: React.FC = () => {
           </li>
         ))}
       </ul>
-
       <div className="navbar-footer">
         <p>v1.0</p>
       </div>
