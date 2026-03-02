@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as allocationService from "../Services/AllocationService"
-
+import * as accountService from "../Services/AccountsService";
 
 /**
  * @param user: User object loaded from JSON
@@ -72,7 +72,21 @@ export function useUserProfileDisplay(user: {
         accountNumber: string;
         balance: number;
     }) => {
-        setAccounts((prev) => [...prev, account]);
+        setAccounts((prev) => {
+            const exists = prev.some(a => a.accountNumber === account.accountNumber);
+            if (exists) {
+                return prev.map(a => a.accountNumber === account.accountNumber ? account : a);
+            }
+            return [...prev, account];
+        });
+        
+        accountService.createAccountService(account);
+    };
+
+    const deleteAccount = (index: number) => {
+        setAccounts((prev) => prev.filter((_, i) => i !== index));
+        
+        accountService.deleteAccountService(index);
     };
 
 
@@ -103,9 +117,8 @@ export function useUserProfileDisplay(user: {
         allocationService.deleteAllocationService(UserID, index)
     };
 
-
-
     return {
+        userID: user.userID,
         name: user.name,
         email: user.email,
         balance,
@@ -121,5 +134,7 @@ export function useUserProfileDisplay(user: {
         addPaymentDue,
         updateAccountBalance,
         addAccount,
+        deleteAccount,
+        
     };
 }
