@@ -8,5 +8,4 @@ export type UserType = {
     savingsGoal: number,
     paymentsDue: string,
     allocations: Allocation[],
-    accounts: BankAccount[];
 }

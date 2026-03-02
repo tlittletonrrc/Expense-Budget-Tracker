@@ -1,23 +1,14 @@
-import users from "../Data/user.json";
-import type { userData } from "../Types/userData";
-import type { UserType } from "../Types/UserType";
+import users from "../Data/user.json"
+import type { userData } from "../Types/userData"
+import type { UserType } from "../Types/UserType"
 
-function transformUser(rawUser: any): UserType {
-    return {
-        ...rawUser,
-        accounts: []
-    };
-}
 
 export function getAllUsers(): userData {
-    return {
-        users: users.users.map(transformUser)
-    };
+    return users 
 }
 
 export const GetUserByID = (UserID: string): UserType | undefined => {
-    const rawUser = users.users.find(u => u.userID === UserID);
-    if (!rawUser) return undefined;
+    const user = users.users.find(u => u.userID === UserID)
 
-    return transformUser(rawUser);
-};
+    return user
+}
