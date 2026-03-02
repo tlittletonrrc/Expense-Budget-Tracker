@@ -1,4 +1,4 @@
-import type { BankAccount } from "../AccountsOverviewData/AccountsData";
+import type { BankAccount } from "../../Types/Allocation";
 // import './AccountsTable.css'
 
 function AccountsTable({
