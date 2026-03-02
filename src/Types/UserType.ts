@@ -1,4 +1,4 @@
-import type {Allocation, BankAccount} from "./Allocation"
+import type {Allocation} from "./Allocation"
 
 export type UserType = {
     userID: string,
