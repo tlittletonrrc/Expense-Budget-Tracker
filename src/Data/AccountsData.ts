@@ -1,4 +1,4 @@
-import type { BankAccount } from "../Types/Allocation";
+import type { BankAccount } from "../Types/BankAccount";
 
 export const Accounts: BankAccount[] = [
   { role: "Checking", name: "Tarryn Checking", accountNumber: "CHK001", balance: 2000 },

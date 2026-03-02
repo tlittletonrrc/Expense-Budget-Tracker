@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { BankAccount } from "../../Types/Allocation";
+import type { BankAccount } from "../../Types/BankAccount";
 // import './AddAccountForm.css'
 
 function AddAccountForm({
