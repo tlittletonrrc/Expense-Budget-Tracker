@@ -52,4 +52,6 @@ A website that allows you to budget and keep track of all your finances so you c
 
 ### Jashandeep 
 - T.2 Service Definition
-- 
+- I.1 User Repository Definition
+- I.2 Test User Data (10 users in user.json)
+- I.3 UserDashboard and UserInfo Components

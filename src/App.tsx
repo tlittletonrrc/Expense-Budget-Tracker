@@ -1,10 +1,6 @@
 import './App.css'
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// import type { UserType } from './Types/UserType';
-// import userData  from "./Data/user.json"
-
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
 import Navbar from './Components/Navbar/navbar';
@@ -14,9 +10,11 @@ import AllocationPage from "./Pages/AllocationPage";
 import PiggyBank from "./Pages/PiggyBank"
 import AccountsOverviewPage from "./Pages/accountsOverviewPage"
 
+// ADD THESE TWO IMPORTS
+import UserDashboard from './Components/UserDashboard/UserDashboard'
+import UserInfo from './Components/UserInfo/UserInfo'
 
 function App() {
-  // const [user, setUser] = useState<UserType>(userData)
   const [route, setRoute] = useState<string>("/")
   console.log("You are in " + route)
   
@@ -25,6 +23,10 @@ function App() {
       <Header/>
       <Navbar/>
       
+      {/* ADD UserInfo component here - shows on all pages */}
+      <div style={{ marginLeft: '250px', padding: '20px' }}>
+        <UserInfo />
+      </div>
  
       <Routes>
         <Route path="/" element={
@@ -39,6 +41,10 @@ function App() {
             <AccountsOverview/>
           </>
         } />
+        
+        {/* ADD THIS NEW ROUTE FOR USER DASHBOARD */}
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        
         <Route path="/savings" element={<PiggyBank />} />
         <Route path="/accounts" element={<AccountsOverviewPage setRoute={setRoute}/>} />
         <Route path="/Allocations" element={<AllocationPage/>} />
