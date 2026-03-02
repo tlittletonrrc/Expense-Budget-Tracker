@@ -1,4 +1,4 @@
-import type {Allocation} from "./Allocation"
+import type {Allocation, BankAccount} from "./Allocation"
 
 export type UserType = {
     userID: string,
@@ -6,6 +6,6 @@ export type UserType = {
     email: string,
     balance: number,
     savingsGoal: number,
-    paymentsDue: string
-    allocations: Allocation[]
+    paymentsDue: string,
+    allocations: Allocation[],
 }

@@ -2,8 +2,8 @@ import './App.css'
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import type { UserType } from './Types/UserType';
-import userData  from "./Data/user.json"
+// import type { UserType } from './Types/UserType';
+// import userData  from "./Data/user.json"
 
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
@@ -16,7 +16,7 @@ import AccountsOverviewPage from "./Pages/accountsOverviewPage"
 
 
 function App() {
-  const [user, setUser] = useState<UserType>(userData)
+  // const [user, setUser] = useState<UserType>(userData)
   const [route, setRoute] = useState<string>("/")
   console.log("You are in " + route)
   
@@ -41,7 +41,7 @@ function App() {
         } />
         <Route path="/savings" element={<PiggyBank />} />
         <Route path="/accounts" element={<AccountsOverviewPage setRoute={setRoute}/>} />
-        <Route path="/Allocations" element={<AllocationPage User={user} SetUser={setUser} setRoute={setRoute}/>} />
+        <Route path="/Allocations" element={<AllocationPage/>} />
         <Route path="/expenses" element={<div>Expenses Page (Coming Soon)</div>} />
         <Route path="/reports" element={<div>Reports Page (Coming Soon)</div>} />
       </Routes>
