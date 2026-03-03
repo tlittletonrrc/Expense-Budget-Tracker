@@ -27,19 +27,9 @@ const Navbar: React.FC = () => {
     },
     {
       id: 4,
-      label: 'Expenses',
-      path: '/expenses'
-    },
-    {
-      id: 5,
       label: 'Savings',
       path: '/savings'
     },
-    {
-      id: 6,
-      label: 'Reports',
-      path: '/reports'
-    }
   ];
 
   return (
