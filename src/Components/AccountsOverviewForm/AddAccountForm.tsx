@@ -3,7 +3,6 @@ import type { BankAccount } from "../../Types/BankAccount";
 // import './AddAccountForm.css'
 
 function AddAccountForm({
-    accounts,
     setAccounts
 }: {
     accounts: BankAccount[];
@@ -19,7 +18,7 @@ function AddAccountForm({
         e.preventDefault();
         setError("");
 
-        if (role.trim().length < 3) {
+        if (role.length < 3) {
             setError("Role must be at least 3 characters.");
             return;
         }
@@ -40,15 +39,33 @@ function AddAccountForm({
             return;
         }
 
-        setAccounts([
-            ...accounts,
-            {
-                role: role.trim(),
-                name: accountName.trim(),
-                accountNumber: accountNumber.trim(),
-                balance: parsedBalance
+        setAccounts(prevAccounts => {
+            const existingIndex = prevAccounts.findIndex(
+                account =>
+                    account.role === role &&
+                    account.name === accountName &&
+                    account.accountNumber === accountNumber
+            );
+
+            if (existingIndex !== -1) {
+                const updatedAccounts = [...prevAccounts];
+                updatedAccounts[existingIndex] = {
+                    ...updatedAccounts[existingIndex],
+                    balance: parsedBalance
+                };
+                return updatedAccounts;
             }
-        ]);
+
+            return [
+                ...prevAccounts,
+                {
+                    role: role,
+                    name: accountName,
+                    accountNumber: accountNumber,
+                    balance: parsedBalance
+                }
+            ];
+        });
 
         setRole("");
         setAccountName("");
