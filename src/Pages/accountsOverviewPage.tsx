@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AddAccountForm from "../Components/AccountsOverviewForm/AddAccountForm";
 import AccountsTable from "../Components/AccountsTable/AccountsTable";
-import { Accounts as initialAccounts } from "../Data/AccountsData";
+import initialAccounts from "../Data/AccountsData.json";
 import type { BankAccount } from "../Types/BankAccount";
 
 function AccountsOverviewPage({ setRoute }: { setRoute: React.Dispatch<React.SetStateAction<string>> }) {

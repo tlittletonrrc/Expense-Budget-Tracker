@@ -1,21 +1,35 @@
 import * as repo from "../Repositories/AccountsRepo";
 
-export function createAccountService(newAccount: {
+export interface BankAccount {
     role: string;
     name: string;
     accountNumber: string;
     balance: number;
-}) {
-    if (!newAccount.accountNumber || !newAccount.name) {
+}
+
+export function createAccountService(newAccount: BankAccount) {
+    if (!newAccount.role || !newAccount.name || !newAccount.accountNumber) {
         throw new Error("Missing required account information.");
     }
 
-    const exists = repo.getAllAccounts().some(a => a.accountNumber === newAccount.accountNumber);
+    if (typeof newAccount.balance !== "number" || isNaN(newAccount.balance)) {
+        throw new Error("Balance must be a valid number.");
+    }
 
-    if (!exists) {
+    const accounts = repo.getAllAccounts();
+
+    const existingIndex = accounts.findIndex(
+        account =>
+            account.role === newAccount.role &&
+            account.name === newAccount.name &&
+            account.accountNumber === newAccount.accountNumber
+    );
+
+    if (existingIndex !== -1) {
+        repo.deleteAccount(existingIndex);
         repo.createAccount(newAccount);
     } else {
-        repo.updateAccount(newAccount);
+        repo.createAccount(newAccount);
     }
 }
 
