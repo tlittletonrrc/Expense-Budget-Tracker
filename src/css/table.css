@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+}
+
+thead {
+    background-color: #3a3a4f;
+}
+
+th, td {
+    padding: 1.2em 1.5em;
+    border-bottom: 1px solid #555;
+}
+
+tr:hover {
+    background-color: #1e90ff33;
+}
+
+td button {
+    background-color: #ff4757;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+td button:hover {
+    background-color: #e84150;
+    transform: translateY(-0.1em);
+    box-shadow: 0 0 0.8em #ff6b81, 0 0 1.6em #ff4757, 0 0 2.4em #ff6b81;
+}
+
+.allocation-form, table {
+    background-color: #2f2f3f;
+    border-radius: 1em;
+    box-shadow: 0 0.4em 1.2em rgba(0,0,0,0.7);
+    padding: 2em;
+    margin: 2em auto;
+    transition: all 0.3s ease-in-out;
+}

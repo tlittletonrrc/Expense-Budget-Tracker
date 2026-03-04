@@ -30,12 +30,19 @@ const Navbar: React.FC = () => {
       label: 'Savings',
       path: '/savings'
     },
+    {
+      id: 5,
+      label: 'Account (Log in and out)',
+      path: '/savings'
+    },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar-header">
-        <h2>expense budget tracker</h2>
+        <Link to="/" className="logo-link">
+          <h2>Expense Budget Tracker</h2>
+        </Link>
       </div>
 
       <ul className="nav-list">
@@ -47,10 +54,6 @@ const Navbar: React.FC = () => {
           </li>
         ))}
       </ul>
-
-      <div className="navbar-footer">
-        <p>v1.0</p>
-      </div>
     </nav>
   );
 };
