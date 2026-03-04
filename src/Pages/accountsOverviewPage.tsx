@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import AddAccountForm from "../Components/AccountsOverviewForm/AddAccountForm";
-import AccountsTable from "../Components/AccountsTable/AccountsTable";
+import AddAccountForm from "../Components/Accounts/AddAccountForm";
+import AccountsTable from "../Components/Accounts/AccountsTable";
 import initialAccounts from "../Data/AccountsData.json";
 import type { BankAccount } from "../Types/BankAccount";
+import '../css/page.css'
 
 function AccountsOverviewPage({ setRoute }: { setRoute: React.Dispatch<React.SetStateAction<string>> }) {
     /*
@@ -25,10 +26,10 @@ function AccountsOverviewPage({ setRoute }: { setRoute: React.Dispatch<React.Set
     }, [setRoute]);
 
     return (
-        <div className="accounts-page">
+        <div className="page">
             <h2>Accounts Overview</h2>
-            <AddAccountForm accounts={accounts} setAccounts={setAccounts} />
             <AccountsTable accounts={accounts} setAccounts={setAccounts} />
+            <AddAccountForm accounts={accounts} setAccounts={setAccounts} />
         </div>
     );
 }

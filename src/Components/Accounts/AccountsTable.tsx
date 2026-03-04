@@ -1,5 +1,5 @@
 import type { BankAccount } from "../../Types/BankAccount";
-// import './AccountsTable.css'
+import '../../css/table.css'
 
 function AccountsTable({
     accounts,
@@ -27,9 +27,9 @@ function AccountsTable({
                 </tr>
             </thead>
 
-            {accounts.map((acc, index) => (
-                <tbody key={index}>
-                    <tr>
+            <tbody>
+                {accounts.map((acc, index) => (
+                    <tr key={index}>
                         <td>{acc.role}</td>
                         <td>{acc.name}</td>
                         <td>{acc.accountNumber}</td>
@@ -40,8 +40,8 @@ function AccountsTable({
                             </button>
                         </td>
                     </tr>
-                </tbody>
-            ))}
+                ))}
+            </tbody>
         </table>
     );
 }

@@ -1,4 +1,4 @@
-import "./BudgetAllocationTable.css"
+import "../../css/table.css"
 import type { UserType } from "../../Types/UserType";
 
 
@@ -24,32 +24,37 @@ function BudgetAllocationTable( {User, deleteAllocation}:
                           and sends data.
     */
 
-    return(
+    return (
         <>
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Amount Allocated</th>
-                    <th>Date Due</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-
-        
-            {User.allocations.map((a, index) => (
-                <tbody>
-                    <tr key={index}>
-                        <td>{a.category}</td>
-                        <td>${a.amount}</td>
-                        <td>{a.date}</td>
-                        <td><button className="allocation-button" onClick={() => deleteAllocation(index)}>Delete</button></td>
+            <table className="allocation-card">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount Allocated</th>
+                        <th>Date Due</th>
+                        <th>Delete</th>
                     </tr>
+                </thead>
+
+                <tbody>
+                    {User.allocations.map((a, index) => (
+                        <tr key={index}>
+                            <td>{a.category}</td>
+                            <td>${a.amount}</td>
+                            <td>{a.date}</td>
+                            <td>
+                                <button
+                                    onClick={() => deleteAllocation(index)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
-            ))}
-            
-        </table>
-    </>
-)}
+            </table>
+        </>
+    );
+}
 
 export default BudgetAllocationTable;

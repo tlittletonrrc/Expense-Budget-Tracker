@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { BankAccount } from "../../Types/BankAccount";
-// import './AddAccountForm.css'
+import '../../css/form.css'
 
 function AddAccountForm({
     setAccounts
@@ -74,35 +74,51 @@ function AddAccountForm({
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="allocation-form" onSubmit={handleSubmit}>
+            <h4 className="allocation-form-title">Add Bank Account</h4>
+
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            <input
-                placeholder="Role"
-                value={role}
-                onChange={e => setRole(e.target.value)}
-            />
+            <div className="inputs">
+                <input
+                    className="input-bar"
+                    placeholder="Role"
+                    value={role}
+                    onChange={e => setRole(e.target.value)}
+                    minLength={3}
+                    required
+                />
 
-            <input
-                placeholder="Account Name"
-                value={accountName}
-                onChange={e => setAccountName(e.target.value)}
-            />
+                <input
+                    className="input-bar"
+                    placeholder="Account Name"
+                    value={accountName}
+                    onChange={e => setAccountName(e.target.value)}
+                    minLength={3}
+                    required
+                />
 
-            <input
-                placeholder="Account Number"
-                value={accountNumber}
-                onChange={e => setAccountNumber(e.target.value)}
-            />
+                <input
+                    className="input-bar"
+                    placeholder="Account Number"
+                    value={accountNumber}
+                    onChange={e => setAccountNumber(e.target.value)}
+                    required
+                />
 
-            <input
-                type="number"
-                placeholder="Balance"
-                value={balance}
-                onChange={e => setBalance(e.target.value)}
-            />
+                <input
+                    className="input-bar"
+                    type="number"
+                    placeholder="Balance"
+                    value={balance}
+                    onChange={e => setBalance(e.target.value)}
+                    required
+                />
+            </div>
 
-            <button type="submit">Add Account</button>
+            <button type="submit">
+                Add Account
+            </button>
         </form>
     );
 }
