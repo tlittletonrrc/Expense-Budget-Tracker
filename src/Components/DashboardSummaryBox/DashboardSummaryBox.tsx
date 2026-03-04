@@ -1,7 +1,5 @@
-import "./DashboardSummaryBox.css";
 import { useUserProfileDisplay } from "../../hooks/JsonHook";
 import * as userService from "../../Services/UserService";
-
 
 function DashboardSummaryBox() {
     const user = userService.getUserByIDService("user_001")

@@ -1,13 +1,13 @@
 // Components
-import BudgetAllocationForm from "../Components/BudgetAllocationForm/BudgetAllocationForm";
-import BudgetAllocationTable from "../Components/BudgetAllocationTable/BudgetAllocationTable";
+import BudgetAllocationForm from "../Components/BudgetAllocation/BudgetAllocationForm";
+import BudgetAllocationTable from "../Components/BudgetAllocation/BudgetAllocationTable";
 
 // Hooks
 import { useUserProfileDisplay } from "../hooks/JsonHook";
 
 // Service
 import * as allocationService from "../Services/AllocationService";
-
+import '../css/page.css'
 
 function AllocationPage() {
     /*
@@ -36,12 +36,13 @@ function AllocationPage() {
 
 
     return(
-        <>
-        <BudgetAllocationTable deleteAllocation={(index) => userProfile.deleteAllocation("user_001", index)} // Temporarily Hardcoded 
+        <div className="page">
+            <h2>Budget Allocation</h2>
+            <BudgetAllocationTable deleteAllocation={(index) => userProfile.deleteAllocation("user_001", index)} // Temporarily Hardcoded 
                                User={{ ...user, allocations: userProfile.allocations }}/>
-        <BudgetAllocationForm addAllocation={(allocation) =>
-        userProfile.addAllocation("user_001", allocation)}/> 
-        </> // Temporarily Hardcoded 
+            <BudgetAllocationForm addAllocation={(allocation) =>
+            userProfile.addAllocation("user_001", allocation)}/> 
+        </div> // Temporarily Hardcoded 
 )}
 
 export default AllocationPage;

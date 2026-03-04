@@ -1,4 +1,4 @@
-import "./BudgetAllocationForm.css"
+import "../../css/form.css"
 
 function BudgetAllocationForm({addAllocation}: {addAllocation: (allocation: { category: string; amount: number; date: string }) => void}) {
     /*

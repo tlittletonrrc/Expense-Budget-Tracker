@@ -1,10 +1,8 @@
-import "./Header.css";
-
 function Header() {
     return (
-        <header>
+        <h2>
             Expense Budget Tracker
-        </header>
+        </h2>
     );
 }
 
