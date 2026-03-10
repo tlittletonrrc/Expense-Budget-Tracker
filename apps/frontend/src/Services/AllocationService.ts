@@ -1,5 +1,5 @@
-import type { Allocation } from "../Types/Allocation";
-import type { UserType } from "../Types/UserType";
+import type { Allocation } from "../../../../shared/types/Allocation";
+import type { UserType } from "@shared/types/UserType";
 import * as repo from "../Repositories/AllocationRepository"
 import * as userService from "./UserService"
 

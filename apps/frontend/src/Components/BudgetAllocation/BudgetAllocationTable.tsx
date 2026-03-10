@@ -1,5 +1,5 @@
 import "../../css/table.css"
-import type { UserType } from "../../Types/UserType";
+import type { UserType } from "../../../../../shared/types/UserType";
 
 
 function BudgetAllocationTable( {User, deleteAllocation}:

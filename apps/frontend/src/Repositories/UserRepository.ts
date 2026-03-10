@@ -1,6 +1,6 @@
 import users from "../Data/user.json"
 import type { userData } from "../Types/userData"
-import type { UserType } from "../Types/UserType"
+import type { UserType } from "../../../../shared/types/UserType"
 
 
 export function getAllUsers(): userData {
