@@ -1,5 +1,5 @@
 import * as userService from "../Services/UserService"
-import type { UserType } from "../../../../shared/types/UserType"
+import type { UserType } from "@shared/types/UserType"
 
 
 
