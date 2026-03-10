@@ -145,6 +145,7 @@
   "homepage": "https://github.com/tlittletonrrc/Expense-Budget-Tracker#readme",
   "description": "",
   "devDependencies": {
-    "@types/cors": "^2.8.19"
+    "@types/cors": "^2.8.19",
+    "concurrently": "^9.2.1"
   }
 }
