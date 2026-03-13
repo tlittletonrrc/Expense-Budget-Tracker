@@ -33,9 +33,13 @@ function AllocationPage() {
     return(
         <div className="page">
             <h2>Budget Allocation</h2>
-            <BudgetAllocationTable deleteAllocation={(index) => deleteAllocation(index)} allocations={allocations}/>
+            <BudgetAllocationTable 
+            allocations={allocations} 
+            deleteAllocation={deleteAllocation}/>
 
-            <BudgetAllocationForm userID={user} addAllocation={(allocation) => addAllocation(allocation)}/> 
+            <BudgetAllocationForm 
+            userID={user}
+            addAllocation={addAllocation}/>
         </div> 
 )}
 
