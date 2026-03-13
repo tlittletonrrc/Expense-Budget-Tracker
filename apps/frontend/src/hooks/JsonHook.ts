@@ -42,7 +42,6 @@ export function useUserProfileDisplay(user: {
 }) {
     const [balance, setBalance] = useState(user.balance);
     const [savingsGoal, setSavingsGoal] = useState(user.savingsGoal);
-    //const [paymentsDue, setPaymentsDue] = useState(user.paymentsDue);
     const [accounts, setAccounts] = useState(user.accounts);
 
     const updateSavingsGoal = (newGoal: number) => {

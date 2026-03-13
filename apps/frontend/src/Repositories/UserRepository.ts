@@ -1,5 +1,3 @@
-//import users from "../Data/user.json"
-//import type { userData } from "@shared/types/userData"
 import type { UserType } from "@shared/types/UserType"
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;

@@ -1,8 +1,5 @@
 import type { Allocation } from "@shared/types/Allocation";
-//import type { UserType } from "@shared/types/UserType";
 import * as repo from "../Repositories/AllocationRepository"
-//import * as userService from "./UserService"
-
 
 
 export async function getAllocationByUserIDService(UserID: string):Promise<Allocation[]> {
@@ -21,14 +18,9 @@ export async function createAllocationService(NewAllocation: Allocation) {
         throw new Error("Missing allocation fields")
     }
 
-    //const user = userService.getUserByIDService(UserID)
     const UserID = String(NewAllocation.userID)
     const allocations = await repo.getAllocationByUser(UserID)
     const exists = allocations.some(a => a.category === NewAllocation.category);
-
-    // if (!exists) {
-    //     throw new Error("User Not Found.")
-    // }
 
     if (!exists){
         repo.createAllocation(NewAllocation)
@@ -38,11 +30,7 @@ export async function createAllocationService(NewAllocation: Allocation) {
 }
 
 
-export async function deleteAllocationService(/*userID:string,*/ allocation_id: string) {
-    // if (!userID) {
-    //     throw new Error("Missing or invalid UserID")
-    // }
-    //const allocations = await repo.getAllocationByUser(userID)
+export async function deleteAllocationService(allocation_id: string) {
 
     if (!allocation_id) {
         throw new Error("Missing allocation id")
