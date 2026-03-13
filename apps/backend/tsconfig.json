@@ -1,20 +1,12 @@
 {
-	"compilerOptions": {
-		"target": "ES6", 
-		"module": "commonjs", 
-		"strict": true, 
-		"esModuleInterop": true, 
-		"skipLibCheck": true, 
-		"forceConsistentCasingInFileNames": true, 
-		"outDir": "./dist", 
-		"resolveJsonModule": true,
-		"noImplicitAny": true, 
-		"strictNullChecks": true, 
-		"strictFunctionTypes": true,
-		"strictPropertyInitialization": true, 
-		"noImplicitThis": true, 
-		"alwaysStrict": true 
-	},
-	"include": ["src/**/*", "tests/**/*"], 
-	"exclude": ["node_modules", "dist"]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    // "rootDir": "./src",
+    "module": "commonjs",
+    "target": "ES6",
+    "sourceMap": true
+  },
+  "include": ["src", "../../shared/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

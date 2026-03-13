@@ -3,10 +3,11 @@ import BudgetAllocationForm from "../Components/BudgetAllocation/BudgetAllocatio
 import BudgetAllocationTable from "../Components/BudgetAllocation/BudgetAllocationTable";
 
 // Hooks
-import { useUserProfileDisplay } from "../hooks/JsonHook";
+//import { useUserProfileDisplay } from "../hooks/JsonHook";
+import { useAllocations } from "../hooks/useAllocations";
 
 // Service
-import * as allocationService from "../Services/AllocationService";
+//import * as allocationService from "../Services/AllocationService";
 import '../css/page.css'
 
 function AllocationPage() {
@@ -28,21 +29,24 @@ function AllocationPage() {
                           and sends data.
     */
 
-    const user = allocationService.getAllocationByUserIDService("user_001") // Temporarily Hardcoded
-    const userProfile = useUserProfileDisplay({
-        ...user,
-        accounts: [],
-    });
+    // const user = await allocationService.getAllocationByUserIDService("user_001") // Temporarily Hardcoded
+    // const userProfile = useUserProfileDisplay({
+    //     ...user,
+    //     accounts: [],
+    // });
+    const user = "user_001" //Temporarily Hardcoded
+    const { allocations, addAllocation, deleteAllocation } = useAllocations(user);
 
 
     return(
         <div className="page">
             <h2>Budget Allocation</h2>
-            <BudgetAllocationTable deleteAllocation={(index) => userProfile.deleteAllocation("user_001", index)} // Temporarily Hardcoded 
-                               User={{ ...user, allocations: userProfile.allocations }}/>
-            <BudgetAllocationForm addAllocation={(allocation) =>
-            userProfile.addAllocation("user_001", allocation)}/> 
-        </div> // Temporarily Hardcoded 
+            <BudgetAllocationTable deleteAllocation={(index) => deleteAllocation(index)} 
+                               allocations={allocations}/>
+
+            <BudgetAllocationForm userID={user} addAllocation={(allocation) =>
+            addAllocation(allocation)}/> 
+        </div> 
 )}
 
 export default AllocationPage;

@@ -29,7 +29,6 @@ export function useUserProfileDisplay(user: {
     email: string;
     balance: number;
     savingsGoal: number;
-    paymentsDue: string;
     allocations: {
         category: string;
         amount: number;
@@ -44,17 +43,17 @@ export function useUserProfileDisplay(user: {
 }) {
     const [balance, setBalance] = useState(user.balance);
     const [savingsGoal, setSavingsGoal] = useState(user.savingsGoal);
-    const [paymentsDue, setPaymentsDue] = useState(user.paymentsDue);
-    const [allocations, setAllocations] = useState(user.allocations);
+    //const [paymentsDue, setPaymentsDue] = useState(user.paymentsDue);
+    /*const [allocations, setAllocations] = useState(user.allocations);*/
     const [accounts, setAccounts] = useState(user.accounts);
 
     const updateSavingsGoal = (newGoal: number) => {
         setSavingsGoal(newGoal);
     };
 
-    const addPaymentDue = (paymentDate: string) => {
-        setPaymentsDue(paymentDate); 
-    };
+    // const addPaymentDue = (paymentDate: string) => {
+    //     setPaymentsDue(paymentDate); 
+    // };
 
     const updateAccountBalance = (accountNumber: string, newBalance: number) => {
         setAccounts((prev) =>
@@ -90,32 +89,34 @@ export function useUserProfileDisplay(user: {
     };
 
 
-    const addAllocation = (UserID: string, newAllocation: {
-        category: string;
-        amount: number;
-        date: string;
-    }) => {
-        setAllocations(prev => {
-            const exists = prev.some(a => a.category === newAllocation.category);
+    // const addAllocation = (UserID: string, newAllocation: {
+    //     userID: string,
+    //     allocation_id: string
+    //     category: string;
+    //     amount: number;
+    //     date: string;
+    // }) => {
+    //     setAllocations(prev => {
+    //         const exists = prev.some(a => a.category === newAllocation.category);
 
-            if (exists) {
-                return prev.map(a =>
-                    a.category === newAllocation.category
-                        ? { ...a, amount: newAllocation.amount, date: newAllocation.date }
-                        : a
-                );
-            }
+    //         if (exists) {
+    //             return prev.map(a =>
+    //                 a.category === newAllocation.category
+    //                     ? { ...a, amount: newAllocation.amount, date: newAllocation.date }
+    //                     : a
+    //             );
+    //         }
 
-            return [...prev, newAllocation];
-        });
-        allocationService.createAllocationService(UserID, newAllocation)
-    };
+    //         return [...prev, newAllocation];
+    //     });
+    //     allocationService.createAllocationService(UserID, newAllocation)
+    // };
 
-    const deleteAllocation = (UserID: string, index: number) => {
-        setAllocations(prev => prev.filter((_, i) => i !== index));
+    // const deleteAllocation = (UserID: string, index: number) => {
+    //     setAllocations(prev => prev.filter((_, i) => i !== index));
 
-        allocationService.deleteAllocationService(UserID, index)
-    };
+    //     allocationService.deleteAllocationService(UserID, index)
+    // };
 
     return {
         userID: user.userID,
@@ -123,15 +124,15 @@ export function useUserProfileDisplay(user: {
         email: user.email,
         balance,
         savingsGoal,
-        paymentsDue,
-        allocations,
+        /*paymentsDue,
+        allocations,*/
         accounts,
 
         setBalance,
         updateSavingsGoal,
-        addAllocation,
+        /*addAllocation,
         deleteAllocation,
-        addPaymentDue,
+        addPaymentDue,*/
         updateAccountBalance,
         addAccount,
         deleteAccount,
