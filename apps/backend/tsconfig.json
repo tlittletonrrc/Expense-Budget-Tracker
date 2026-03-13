@@ -15,6 +15,6 @@
 		"noImplicitThis": true, 
 		"alwaysStrict": true 
 	},
-	"include": ["src/**/*", "tests/**/*"], 
+	"include": ["src/**/*", "tests/**/*", "../../shared/**/*"], 
 	"exclude": ["node_modules", "dist"]
 }
