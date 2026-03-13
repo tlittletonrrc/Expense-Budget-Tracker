@@ -1,20 +1,16 @@
 {
-	"compilerOptions": {
-		"target": "ES6", 
-		"module": "commonjs", 
-		"strict": true, 
-		"esModuleInterop": true, 
-		"skipLibCheck": true, 
-		"forceConsistentCasingInFileNames": true, 
-		"outDir": "./dist", 
-		"resolveJsonModule": true,
-		"noImplicitAny": true, 
-		"strictNullChecks": true, 
-		"strictFunctionTypes": true,
-		"strictPropertyInitialization": true, 
-		"noImplicitThis": true, 
-		"alwaysStrict": true 
-	},
-	"include": ["src/**/*", "tests/**/*", "../../shared/**/*"], 
-	"exclude": ["node_modules", "dist"]
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "sourceMap": true,
+      "lib": ["ESNext"],
+      "paths": {
+        "@shared/*": ["../../shared/*"]
+      }
+    },
+    "include": ["src/**/*", "tests/**/*"],
+    "exclude": ["node_modules", "dist"]
 }
