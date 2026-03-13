@@ -1,6 +1,9 @@
 import "../../css/form.css"
+import type { Allocation } from "@shared/types/Allocation";
 
-function BudgetAllocationForm({addAllocation}: {addAllocation: (allocation: { category: string; amount: number; date: string }) => void}) {
+function BudgetAllocationForm({ addAllocation, userID}: { 
+    addAllocation: (allocation: Allocation) => void,
+    userID: string }) {
     /*
     AllocationRepository: The allocation page uses the allocation repository to get, update, create, and delete items out 
                           of the allocation table it does this by calling the functions in the service layer to fetch the data 
@@ -25,11 +28,12 @@ function BudgetAllocationForm({addAllocation}: {addAllocation: (allocation: { ca
         const form = u.currentTarget;
         const formData = new FormData(form);
 
-        const item = formData.get("Item") as string
+        const category = formData.get("Item") as string
         const amount = Number(formData.get("Amount"))
         const date = formData.get("Date") as string
+        const unique_id = Date.now().toString(36) + Math.random().toString(36).slice(2)
 
-        const newAllocation = { category: item, amount, date };
+        const newAllocation: Allocation = {userID: String(userID), allocation_id: unique_id, category: category, amount:amount, date: date };
 
         addAllocation(newAllocation)
 };

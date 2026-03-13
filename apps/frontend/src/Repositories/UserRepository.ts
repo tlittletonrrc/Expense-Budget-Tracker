@@ -1,14 +1,19 @@
-import users from "../Data/user.json"
-import type { userData } from "../Types/userData"
-import type { UserType } from "../Types/UserType"
+//import users from "../Data/user.json"
+//import type { userData } from "@shared/types/userData"
+import type { UserType } from "@shared/types/UserType"
 
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const TERM_ENDPOINT = "/user"
 
-export function getAllUsers(): userData {
-    return users 
-}
+export async function getUserByID(userID: string): Promise<UserType> {
+    const userResponse: Response = await fetch(
+        `${BASE_URL}${TERM_ENDPOINT}/${userID}`
+    );
 
-export const GetUserByID = (UserID: string): UserType | undefined => {
-    const user = users.users.find(u => u.userID === UserID)
+    if(!userResponse.ok) {
+        throw new Error(`Failed to fetch user with id ${userID}`);
+    }
 
-    return user
+    const json= await userResponse.json();
+    return json.user;
 }

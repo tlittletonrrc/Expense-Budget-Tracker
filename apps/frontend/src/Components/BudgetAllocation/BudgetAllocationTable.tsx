@@ -1,9 +1,10 @@
 import "../../css/table.css"
-import type { UserType } from "../../Types/UserType";
+import type { Allocation } from "@shared/types/Allocation";
+//import type { UserType } from "@shared/types/UserType";
 
 
-function BudgetAllocationTable( {User, deleteAllocation}:
-    {User: UserType
+function BudgetAllocationTable( {allocations, deleteAllocation}:
+    {allocations: Allocation[]
      deleteAllocation: (index: number) => void;
     }) {
     /*
@@ -37,7 +38,7 @@ function BudgetAllocationTable( {User, deleteAllocation}:
                 </thead>
 
                 <tbody>
-                    {User.allocations.map((a, index) => (
+                    {allocations.map((a, index) => (
                         <tr key={index}>
                             <td>{a.category}</td>
                             <td>${a.amount}</td>

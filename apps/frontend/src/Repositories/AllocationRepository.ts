@@ -1,36 +1,78 @@
-import * as userService from "../Services/UserService"
-import type { UserType } from "../Types/UserType"
+//import * as userService from "../Services/UserService"
+import type { Allocation } from "@shared/types/Allocation"
+
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const ALLOCATION_ENDPOINT = "/allocations"
 
 
-
-export function getAllocationByUser(UserID: string): UserType {
-    const user = userService.getUserByIDService(UserID)
-    return user
-}
-
-
-export function updateAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string } ): UserType {  
-    const user = userService.getUserByIDService(UserID)
-
-    user.allocations = user.allocations.map(a =>
-        a.category === newAllocation.category
-            ? { ...a, amount: newAllocation.amount, date: newAllocation.date }: a
+export async function getAllocationByUser(UserID: string): Promise<Allocation[]> {
+    const termResponse: Response = await fetch(
+        `${BASE_URL}${ALLOCATION_ENDPOINT}/${UserID}`
     );
-    
-    return user; 
+
+    if(!termResponse.ok) {
+        throw new Error(`Failed to fetch term with id ${UserID}`);
+    }
+
+    const json = await termResponse.json();
+    return json.Allocations;
 }
 
 
-export function createAllocation(UserID: string, newAllocation: { category: string; amount: number; date: string }) {
-    const user = userService.getUserByIDService(UserID)
+export async function updateAllocation(newAllocation: Allocation) {  
+    const updateResponse: Response = await fetch(
+        `${BASE_URL}${ALLOCATION_ENDPOINT}`,
+        {
+            method: "PUT",
+            body: JSON.stringify({...newAllocation}),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+        
+    if(!updateResponse.ok) {
+        throw new Error(`Failed to update ${newAllocation.category} category.`);
+    }
 
-    user.allocations.push(newAllocation);
+    const json = await updateResponse.json();
+    return json.updatedAllocation;
 }
 
 
-export function deleteAllocation(UserID: string, index: number): UserType {
-    const user = userService.getUserByIDService(UserID)
-    user.allocations = user.allocations.filter((_, i) => i !== index);
+export async function createAllocation(newAllocation: Allocation) {
+    const response: Response = await fetch(`${BASE_URL}${ALLOCATION_ENDPOINT}/new`, {
+        method: "POST",
+        body: JSON.stringify(newAllocation),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 
-    return user;
+    if (!response) {
+        throw new Error("Error creating allocation.")
+    }
+
+    const json = await response.json();
+    return json.newAllocation;
+}
+
+
+export async function deleteAllocation(allocation_id: string) {
+    const deleteResponse: Response = await fetch(
+        `${BASE_URL}${ALLOCATION_ENDPOINT}/${allocation_id}`,
+        {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+    );
+
+    if(!deleteResponse.ok) {
+        throw new Error(`Failed to delete allocation with id ${allocation_id}`);
+    }
+
+    const json = await deleteResponse.json();
+    return json;
 }

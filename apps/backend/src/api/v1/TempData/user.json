@@ -1,0 +1,11 @@
+{
+    "users": [
+        {
+        "userID": "user_001",
+        "name": "Tarryn",
+        "email": "Tarryn@rrc.ca",
+        "balance": 2000,
+        "savingsGoal": 500
+        }
+    ]
+}
