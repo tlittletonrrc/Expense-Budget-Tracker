@@ -3,11 +3,9 @@ import BudgetAllocationForm from "../Components/BudgetAllocation/BudgetAllocatio
 import BudgetAllocationTable from "../Components/BudgetAllocation/BudgetAllocationTable";
 
 // Hooks
-//import { useUserProfileDisplay } from "../hooks/JsonHook";
 import { useAllocations } from "../hooks/useAllocations";
 
 // Service
-//import * as allocationService from "../Services/AllocationService";
 import '../css/page.css'
 
 function AllocationPage() {
@@ -28,12 +26,6 @@ function AllocationPage() {
                           updates and maintains the state, the service validates and manipulates the data, and the repo fetches 
                           and sends data.
     */
-
-    // const user = await allocationService.getAllocationByUserIDService("user_001") // Temporarily Hardcoded
-    // const userProfile = useUserProfileDisplay({
-    //     ...user,
-    //     accounts: [],
-    // });
     const user = "user_001" //Temporarily Hardcoded
     const { allocations, addAllocation, deleteAllocation } = useAllocations(user);
 
@@ -41,11 +33,13 @@ function AllocationPage() {
     return(
         <div className="page">
             <h2>Budget Allocation</h2>
-            <BudgetAllocationTable deleteAllocation={(index) => deleteAllocation(index)} 
-                               allocations={allocations}/>
+            <BudgetAllocationTable 
+            allocations={allocations} 
+            deleteAllocation={deleteAllocation}/>
 
-            <BudgetAllocationForm userID={user} addAllocation={(allocation) =>
-            addAllocation(allocation)}/> 
+            <BudgetAllocationForm 
+            userID={user}
+            addAllocation={addAllocation}/>
         </div> 
 )}
 
