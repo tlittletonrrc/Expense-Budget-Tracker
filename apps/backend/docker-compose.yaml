@@ -3,7 +3,7 @@ version: "3.9"
 services:
   postgres:
     image: postgres:16
-    container_name: postgres-movie-hub_dev
+    container_name: postgres_expense_budger_tracker
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres

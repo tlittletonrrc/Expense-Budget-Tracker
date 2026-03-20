@@ -1,9 +1,14 @@
 import type { Allocation } from "@shared/types/Allocation"
 import allocations from "../TempData/allocations.json"
-
+import prisma from "../../../../prisma/client";
 
 export async function getAllocationByUser(UserID: string): Promise<Allocation[]> {
-    const userAllocations = allocations.filter(a => a.userID === UserID)
+    ///const userAllocations = allocations.filter(a => a.userID === UserID)
+    const userAllocations = await prisma.allocation.findMany({
+        where: {
+            userID: UserID
+        }
+    })
     return userAllocations
 }
 
@@ -32,7 +37,7 @@ export async function createAllocation(newAllocation: Allocation) {
 }
 
 
-export async function deleteAllocation(allocation_id: string) {
+export async function deleteAllocation(allocation_id: number) {
     const index = allocations.findIndex(a => a.allocation_id === allocation_id); 
 
     if (index === -1) {

@@ -30,7 +30,7 @@ export async function createAllocationService(NewAllocation: Allocation) {
 }
 
 
-export async function deleteAllocationService(allocation_id: string) {
+export async function deleteAllocationService(allocation_id: number) {
 
     if (!allocation_id) {
         throw new Error("Missing allocation id")

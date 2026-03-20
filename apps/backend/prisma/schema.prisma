@@ -8,7 +8,7 @@ generator client {
 // information about the database that prisma will connect to
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") 
 }
 
 model Account {
@@ -17,4 +17,12 @@ model Account {
   name          String
   accountNumber String
   balance       Float
+}
+
+model Allocation {
+  allocation_id Int  @id @default(autoincrement())
+  userID        String
+  category      String
+  amount        Float
+  date          String
 }

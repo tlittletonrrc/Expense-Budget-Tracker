@@ -57,7 +57,7 @@ export async function createAllocation(newAllocation: Allocation) {
 }
 
 
-export async function deleteAllocation(allocation_id: string) {
+export async function deleteAllocation(allocation_id: number) {
     const deleteResponse: Response = await fetch(
         `${BASE_URL}${ALLOCATION_ENDPOINT}/${allocation_id}`,
         {

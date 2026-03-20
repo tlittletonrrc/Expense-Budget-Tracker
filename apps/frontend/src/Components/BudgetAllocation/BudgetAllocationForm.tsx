@@ -31,7 +31,7 @@ function BudgetAllocationForm({ addAllocation, userID}: {
         const category = formData.get("Item") as string
         const amount = Number(formData.get("Amount"))
         const date = formData.get("Date") as string
-        const unique_id = Date.now().toString(36) + Math.random().toString(36).slice(2)
+        const unique_id = parseInt(Math.random().toString().slice(2), 10);
 
         const newAllocation: Allocation = {userID: String(userID), allocation_id: unique_id, category: category, amount:amount, date: date };
 

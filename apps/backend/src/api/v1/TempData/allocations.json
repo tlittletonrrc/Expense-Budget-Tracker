@@ -1,7 +1,7 @@
 [
     {
     "userID": "user_001", 
-    "allocation_id" :"1", 
+    "allocation_id" :1, 
     "category" : "Public Transit", 
     "amount": 1100, 
     "date": "2026-01-03" 
@@ -9,7 +9,7 @@
 
     {
     "userID": "user_001", 
-    "allocation_id" :"2", 
+    "allocation_id" :2, 
     "category" : "Utilities", 
     "amount": 1010, 
     "date": "2026-01-03" 
@@ -17,7 +17,7 @@
 
     {
     "userID": "user_002", 
-    "allocation_id" :"3", 
+    "allocation_id" :3, 
     "category" : "Education", 
     "amount": 1100, 
     "date": "2026-01-03" 
@@ -25,7 +25,7 @@
     
     {
     "userID": "user_004", 
-    "allocation_id" :"4", 
+    "allocation_id" :4, 
     "category" : "Groceries", 
     "amount": 811, 
     "date": "2026-01-03" 
