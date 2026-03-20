@@ -1,9 +1,8 @@
 import type { Allocation } from "@shared/types/Allocation"
-import allocations from "../TempData/allocations.json"
 import prisma from "../../../../prisma/client";
 
+
 export async function getAllocationByUser(UserID: string): Promise<Allocation[]> {
-    ///const userAllocations = allocations.filter(a => a.userID === UserID)
     const userAllocations = await prisma.allocation.findMany({
         where: {
             userID: UserID
@@ -14,23 +13,26 @@ export async function getAllocationByUser(UserID: string): Promise<Allocation[]>
 
 
 export async function updateAllocation(newAllocation: Allocation ): Promise<Allocation> {  
-    const allocation = allocations.find(a => a.userID === newAllocation.userID && a.category === newAllocation.category);
-
-    if (!allocation) {
-        throw new Error("Allocation not found");
+    try{
+        return await prisma.allocation.update({
+            where: {allocation_id: newAllocation.allocation_id},
+            data: {
+                category: newAllocation.category,
+                amount: newAllocation.amount,
+                date: newAllocation.date
+            }
+        })
+    } catch {
+        throw new Error("Error updating allocation.")
     }
-
-    allocation.category = newAllocation.category;
-    allocation.amount = newAllocation.amount;
-    allocation.date = newAllocation.date;
-
-    return allocation;
 }
 
 
 export async function createAllocation(newAllocation: Allocation) {
     try {
-        allocations.push(newAllocation);
+        return await prisma.allocation.create({
+            data: newAllocation
+        })
     } catch {
         throw new Error("Unable to create new allocation.")
     }
@@ -38,11 +40,11 @@ export async function createAllocation(newAllocation: Allocation) {
 
 
 export async function deleteAllocation(allocation_id: number) {
-    const index = allocations.findIndex(a => a.allocation_id === allocation_id); 
-
-    if (index === -1) {
-        throw new Error("Allocation not found");
+    try {
+        return await prisma.allocation.delete({
+            where: {allocation_id}
+        })
+    } catch {
+        throw new Error("Error deleting allocation.")
     }
-
-    allocations.splice(index, 1);
 }

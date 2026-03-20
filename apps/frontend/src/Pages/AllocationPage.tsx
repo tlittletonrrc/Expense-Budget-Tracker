@@ -27,7 +27,7 @@ function AllocationPage() {
                           and sends data.
     */
     const user = "user_001" //Temporarily Hardcoded
-    const { allocations, addAllocation, deleteAllocation } = useAllocations(user);
+    const { allocations, addAllocation, deleteAllocation, updateAllocation } = useAllocations(user);
 
 
     return(
@@ -39,7 +39,9 @@ function AllocationPage() {
 
             <BudgetAllocationForm 
             userID={user}
-            addAllocation={addAllocation}/>
+            addAllocation={addAllocation}
+            allocations={allocations}
+            updateAllocation={updateAllocation}/>
         </div> 
 )}
 

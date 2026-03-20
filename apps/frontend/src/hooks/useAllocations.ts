@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import * as allocationService from "../Services/AllocationService";
 import type { Allocation } from "@shared/types/Allocation";
+import type { NewAllocation } from "@shared/types/NewAllocation";
 
 export function useAllocations(userID: string) {
     const [allocations, setAllocations] = useState<Allocation[]>([]);
@@ -14,20 +15,32 @@ export function useAllocations(userID: string) {
     }, [userID]);
 
 
-    const addAllocation = async (newAllocation: Allocation) => {
-        setAllocations(prev => {
-            const exists = prev.some(a => a.category === newAllocation.category);
-            if (exists) {
-                return prev.map(a =>
-                    a.category === newAllocation.category
-                        ? { ...a, amount: newAllocation.amount, date: newAllocation.date }
-                        : a
-                );
-            }
-            return [...prev, newAllocation];
-        });
+    // const addAllocation = async (newAllocation: NewAllocation) => {
+    // const createdAllocation = await allocationService.createAllocationService(newAllocation);
 
-        await allocationService.createAllocationService(newAllocation);
+    // setAllocations(prev => {
+    //     const exists = prev.some(a => a.allocation_id === createdAllocation.allocation_id);
+    //     if (exists) {
+    //         return prev.map(a =>
+    //             a.category === createdAllocation.category
+    //                 ? { ...a, amount: createdAllocation.amount, date: createdAllocation.date }
+    //                 : a
+    //         );
+    //     }
+    //     return [...prev, createdAllocation];
+    //     });
+    // };
+
+    const addAllocation = async (newAllocation: NewAllocation) => {
+        const createdAllocation = await allocationService.createAllocationService(newAllocation);
+        setAllocations(prev => [...prev, createdAllocation]);
+    };
+
+    const updateAllocation = async (updatedAllocation: Allocation) => {
+        const updated = await allocationService.updateAllocationService(updatedAllocation);
+        setAllocations(prev =>
+            prev.map(a => a.allocation_id === updated.allocation_id ? updated : a)
+        );
     };
 
 
@@ -38,5 +51,5 @@ export function useAllocations(userID: string) {
         await allocationService.deleteAllocationService(/*userID,*/ allocationID);
     };
 
-    return { allocations, addAllocation, deleteAllocation };
+    return { allocations, addAllocation, deleteAllocation, updateAllocation };
 }
