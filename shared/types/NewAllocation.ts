@@ -1,6 +1,5 @@
-export type Allocation = {
+export type NewAllocation = {
   userID: string,
-  allocation_id: number,
   category: string,
   amount: number,
   date: string

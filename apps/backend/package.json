@@ -7,6 +7,10 @@
     "start": "ts-node src/server.ts",
     "build": "tsc"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+ 
   "keywords": [],
   "author": "",
   "license": "ISC",
