@@ -11,6 +11,7 @@ datasource db {
   url      = env("DATABASE_URL") 
 }
 
+
 model Account {
   id            Int     @id @default(autoincrement())
   role          String
@@ -19,10 +20,21 @@ model Account {
   balance       Float
 }
 
+
 model Allocation {
   allocation_id Int  @id @default(autoincrement())
   userID        String
   category      String
   amount        Float
   date          String
+}
+
+
+model User {
+  userID        String @id @default(cuid())
+  name          String
+  email         String
+  password      String
+  balance       Float
+  savingsGoal   Float
 }

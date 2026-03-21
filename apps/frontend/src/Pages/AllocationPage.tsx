@@ -26,7 +26,7 @@ function AllocationPage() {
                           updates and maintains the state, the service validates and manipulates the data, and the repo fetches 
                           and sends data.
     */
-    const user = "user_001" //Temporarily Hardcoded
+    const user = "cmmzmbejk00017k2k6p4rww7t" //Temporarily Hardcoded
     const { allocations, addAllocation, deleteAllocation, updateAllocation } = useAllocations(user);
 
 

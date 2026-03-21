@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { AccountsSeedData, AllocationSeedData } from "./seedData";
+import { AccountsSeedData, AllocationSeedData, UserSeedData } from "./seedData";
 
 const prisma = new PrismaClient();
 
@@ -10,6 +10,7 @@ async function main() {
   // Clear existing accounts
     await prisma.account.deleteMany();
     await prisma.allocation.deleteMany();
+    await prisma.user.deleteMany();
 
     // insert terms to db
     const createdAccounts = await prisma.account.createMany(
@@ -25,6 +26,14 @@ async function main() {
             skipDuplicates: true
         }
     );
+
+    const createUser = await prisma.user.createMany(
+        {
+            data: UserSeedData,
+            skipDuplicates: true
+        }
+    );
+    console.log(`Created ${createUser.count} allocations.`);
     console.log(`Created ${createAllocations.count} allocations.`);
     console.log(`Created ${createdAccounts.count} accounts.`);
 };

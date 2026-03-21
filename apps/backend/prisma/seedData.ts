@@ -77,3 +77,14 @@ export const AllocationSeedData: any[] = [
         "date": "2026-01-05"
     }
 ]
+
+
+export const UserSeedData: any[] = [
+    {
+        "name": "John Doe",
+        "email": "johndoe@gmail.com",
+        "password": "password",
+        "balance": 9454,
+        "savingsGoal": 10000
+    }
+]
