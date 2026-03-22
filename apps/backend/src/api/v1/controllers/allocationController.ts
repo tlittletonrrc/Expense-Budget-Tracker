@@ -46,7 +46,7 @@ export const updateAllocation = async (req: Request, res: Response) => {
 
 export const deleteAllocation = async (req: Request, res: Response) => {
     try {
-        const allocation_id = String(req.params.id)
+        const allocation_id = Number(req.params.id)
         await allocationService.deleteAllocation(allocation_id)
 
         res.status(200).json({Success: "successfully deleted Allocation"})

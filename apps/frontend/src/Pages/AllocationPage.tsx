@@ -8,7 +8,7 @@ import { useAllocations } from "../hooks/useAllocations";
 // Service
 import '../css/page.css'
 
-function AllocationPage() {
+function AllocationPage({user}: { user: string }) {
     /*
     AllocationRepository: The allocation page uses the allocation repository to get, update, create, and delete items out 
                           of the allocation table it does this by calling the functions in the service layer to fetch the data 
@@ -26,8 +26,8 @@ function AllocationPage() {
                           updates and maintains the state, the service validates and manipulates the data, and the repo fetches 
                           and sends data.
     */
-    const user = "user_001" //Temporarily Hardcoded
-    const { allocations, addAllocation, deleteAllocation } = useAllocations(user);
+    
+    const { allocations, addAllocation, deleteAllocation, updateAllocation } = useAllocations(user);
 
 
     return(
@@ -39,7 +39,9 @@ function AllocationPage() {
 
             <BudgetAllocationForm 
             userID={user}
-            addAllocation={addAllocation}/>
+            addAllocation={addAllocation}
+            allocations={allocations}
+            updateAllocation={updateAllocation}/>
         </div> 
 )}
 

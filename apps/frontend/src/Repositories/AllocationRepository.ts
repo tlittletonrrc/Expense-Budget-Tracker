@@ -1,4 +1,9 @@
+// ===========================================================
+// Repository in front end due to confusion from course notes.
+// ===========================================================
+
 import type { Allocation } from "@shared/types/Allocation"
+import type { NewAllocation } from "@shared/types/NewAllocation"
 
 const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const ALLOCATION_ENDPOINT = "/allocations"
@@ -18,7 +23,7 @@ export async function getAllocationByUser(UserID: string): Promise<Allocation[]>
 }
 
 
-export async function updateAllocation(newAllocation: Allocation) {  
+export async function updateAllocation(newAllocation: NewAllocation) {  
     const updateResponse: Response = await fetch(
         `${BASE_URL}${ALLOCATION_ENDPOINT}`,
         {
@@ -39,7 +44,7 @@ export async function updateAllocation(newAllocation: Allocation) {
 }
 
 
-export async function createAllocation(newAllocation: Allocation) {
+export async function createAllocation(newAllocation: NewAllocation) {
     const response: Response = await fetch(`${BASE_URL}${ALLOCATION_ENDPOINT}/new`, {
         method: "POST",
         body: JSON.stringify(newAllocation),
@@ -57,7 +62,7 @@ export async function createAllocation(newAllocation: Allocation) {
 }
 
 
-export async function deleteAllocation(allocation_id: string) {
+export async function deleteAllocation(allocation_id: number) {
     const deleteResponse: Response = await fetch(
         `${BASE_URL}${ALLOCATION_ENDPOINT}/${allocation_id}`,
         {

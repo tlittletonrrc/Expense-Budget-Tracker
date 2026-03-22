@@ -1,8 +1,11 @@
 import "../../css/form.css"
 import type { Allocation } from "@shared/types/Allocation";
+import type { NewAllocation } from "@shared/types/NewAllocation";
 
-function BudgetAllocationForm({ addAllocation, userID}: { 
-    addAllocation: (allocation: Allocation) => void,
+function BudgetAllocationForm({ addAllocation, updateAllocation, allocations, userID}: { 
+    addAllocation: (allocation: NewAllocation) => void,
+    updateAllocation: (allocation: Allocation) => void,
+    allocations: Allocation[],
     userID: string }) {
     /*
     AllocationRepository: The allocation page uses the allocation repository to get, update, create, and delete items out 
@@ -31,13 +34,21 @@ function BudgetAllocationForm({ addAllocation, userID}: {
         const category = formData.get("Item") as string
         const amount = Number(formData.get("Amount"))
         const date = formData.get("Date") as string
-        const unique_id = Date.now().toString(36) + Math.random().toString(36).slice(2)
+        const newAllocation: NewAllocation = {userID: String(userID), category: category, amount:amount, date: date };
+        const exists = allocations.find(a => a.category === category);
 
-        const newAllocation: Allocation = {userID: String(userID), allocation_id: unique_id, category: category, amount:amount, date: date };
-
-        addAllocation(newAllocation)
+        if (!exists){
+            addAllocation(newAllocation)
+        } else {
+            updateAllocation({
+                allocation_id: exists.allocation_id,
+                userID: exists.userID,
+                category: exists.category,
+                amount: amount,
+                date: date
+                });
+            }
 };
-
     return(
         <>
             <form className="allocation-form" onSubmit={createAllocation}>
