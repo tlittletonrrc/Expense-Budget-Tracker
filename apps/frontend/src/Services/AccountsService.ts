@@ -1,38 +1,61 @@
-import * as repo from "../Repositories/AccountsRepo";
+import type { BankAccount } from "@shared/types/BankAccounts";
 
-export interface BankAccount {
-    role: string;
-    name: string;
-    accountNumber: string;
-    balance: number;
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const ACCOUNT_ENDPOINT = "/accounts";
+
+export async function getAllAccounts(): Promise<BankAccount[]> {
+    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch accounts.");
+    }
+
+    const json = await response.json();
+    return json;
 }
 
-export function createAccountService(newAccount: BankAccount) {
-    if (!newAccount.role || !newAccount.name || !newAccount.accountNumber) {
-        throw new Error("Missing required account information.");
+export async function createAccount(newAccount: BankAccount): Promise<BankAccount> {
+    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}/new`, {
+        method: "POST",
+        body: JSON.stringify(newAccount),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error("Failed to create new account.");
     }
 
-    if (typeof newAccount.balance !== "number" || isNaN(newAccount.balance)) {
-        throw new Error("Balance must be a valid number.");
-    }
-
-    const accounts = repo.getAllAccounts();
-
-    const existingIndex = accounts.findIndex(
-        account =>
-            account.role === newAccount.role &&
-            account.name === newAccount.name &&
-            account.accountNumber === newAccount.accountNumber
-    );
-
-    if (existingIndex !== -1) {
-        repo.deleteAccount(existingIndex);
-        repo.createAccount(newAccount);
-    } else {
-        repo.createAccount(newAccount);
-    }
+    const json = await response.json();
+    return json;
 }
 
-export function deleteAccountService(index: number) {
-    repo.deleteAccount(index);
+export async function updateAccount(account: BankAccount): Promise<BankAccount> {
+    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}/${account.id}`, {
+        method: "PUT",
+        body: JSON.stringify(account),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to update account with ID ${account.id}`);
+    }
+
+    const json = await response.json();
+    return json;
+}
+
+export async function deleteAccount(accountId: number): Promise<void> {
+    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}/${accountId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to delete account with ID ${accountId}`);
+    }
 }

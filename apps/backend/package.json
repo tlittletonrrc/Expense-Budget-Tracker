@@ -18,7 +18,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@prisma/client": "6.5.0",
+    "@prisma/client": "^6.19.2",
     "@types/express": "^5.0.6",
     "@types/node": "^25.3.5",
     "dotenv": "^17.3.1",
