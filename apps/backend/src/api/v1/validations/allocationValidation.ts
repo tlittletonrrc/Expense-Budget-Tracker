@@ -1,7 +1,7 @@
-import Joi, { ObjectSchema } from "joi";
+import Joi /*, { ObjectSchema }*/ from "joi";
 
-// Post operation schemas organized by request part
-export const postSchemas = {
+
+export const allocationSchemas = {
     // POST /allocations/new - Create new post
     createAllocation: {
         body: Joi.object({
@@ -26,7 +26,7 @@ export const postSchemas = {
     // GET /allocations/:id - Get single post
     getAllocationByUser: {
         params: Joi.object({
-        userID: Joi.string().required().messages({
+        id: Joi.string().required().messages({
                 "any.required": "User ID is required",
                 "string.empty": "User ID cannot be empty",
             }),
@@ -34,7 +34,7 @@ export const postSchemas = {
     },
 
     // PUT /allocations - Update post
-    update: {
+    updateAllocation: {
         body: Joi.object({
             userID: Joi.string().required().messages({
                 "any.required": "User ID is required",
@@ -58,25 +58,12 @@ export const postSchemas = {
     },
 
     // DELETE /allocations/:id - Delete post
-    delete: {
+    deleteAllocation: {
         params: Joi.object({
-            allocation_id: Joi.string().required().messages({
+            id: Joi.string().required().messages({
                 "any.required": "Post ID is required",
                 "string.empty": "Post ID cannot be empty",
             }),
-        }),
-    },
-
-    // GET /posts - List posts with filtering
-    list: {
-        query: Joi.object({
-            page: Joi.number().integer().min(1).default(1),
-            limit: Joi.number().integer().min(1).max(100).default(10),
-            userId: Joi.string().optional(),
-            sortBy: Joi.string()
-                .valid("createdAt", "updatedAt")
-                .default("createdAt"),
-            sortOrder: Joi.string().valid("asc", "desc").default("desc"),
         }),
     },
 };
