@@ -13,11 +13,11 @@ datasource db {
 
 
 model Account {
-  id            Int     @id @default(autoincrement())
-  role          String
-  name          String
+  id Int @id @default(autoincrement())
+  role String
+  name String
   accountNumber String
-  balance       Float
+  balance Float
 }
 
 

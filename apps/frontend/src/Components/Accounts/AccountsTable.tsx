@@ -1,5 +1,6 @@
-import type { BankAccount } from "../../Types/BankAccount";
-import '../../css/table.css'
+import type { BankAccount } from "@shared/types/BankAccounts";
+import * as accountService from "../../Services/AccountsService";
+import "../../css/table.css";
 
 function AccountsTable({
     accounts,
@@ -9,10 +10,10 @@ function AccountsTable({
     setAccounts: React.Dispatch<React.SetStateAction<BankAccount[]>>;
 }) {
 
-    function deleteAccount(index: number) {
-        setAccounts(
-            accounts.filter((_, i) => i !== index)
-        );
+    async function deleteAccount(id: number) {
+        await accountService.deleteAccount(id);
+        const updated = await accountService.getAllAccounts();
+        setAccounts(updated);
     }
 
     return (
@@ -28,14 +29,14 @@ function AccountsTable({
             </thead>
 
             <tbody>
-                {accounts.map((acc, index) => (
-                    <tr key={index}>
+                {accounts.map((acc) => (
+                    <tr key={acc.id}>
                         <td>{acc.role}</td>
                         <td>{acc.name}</td>
                         <td>{acc.accountNumber}</td>
                         <td>${acc.balance.toFixed(2)}</td>
                         <td>
-                            <button onClick={() => deleteAccount(index)}>
+                            <button onClick={() => deleteAccount(acc.id)}>
                                 Delete
                             </button>
                         </td>

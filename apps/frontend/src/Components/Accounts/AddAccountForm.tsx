@@ -1,11 +1,11 @@
 import { useState } from "react";
-import type { BankAccount } from "../../Types/BankAccount";
-import '../../css/form.css'
+import type { BankAccount } from "@shared/types/BankAccounts";
+import * as accountService from "../../Services/AccountsService";
+import "../../css/form.css";
 
 function AddAccountForm({
     setAccounts
 }: {
-    accounts: BankAccount[];
     setAccounts: React.Dispatch<React.SetStateAction<BankAccount[]>>;
 }) {
     const [role, setRole] = useState("");
@@ -14,7 +14,7 @@ function AddAccountForm({
     const [balance, setBalance] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError("");
 
@@ -39,33 +39,15 @@ function AddAccountForm({
             return;
         }
 
-        setAccounts(prevAccounts => {
-            const existingIndex = prevAccounts.findIndex(
-                account =>
-                    account.role === role &&
-                    account.name === accountName &&
-                    account.accountNumber === accountNumber
-            );
+        await accountService.createAccount({
+            role,
+            name: accountName,
+            accountNumber,
+            balance: parsedBalance,
+        } as BankAccount);
 
-            if (existingIndex !== -1) {
-                const updatedAccounts = [...prevAccounts];
-                updatedAccounts[existingIndex] = {
-                    ...updatedAccounts[existingIndex],
-                    balance: parsedBalance
-                };
-                return updatedAccounts;
-            }
-
-            return [
-                ...prevAccounts,
-                {
-                    role: role,
-                    name: accountName,
-                    accountNumber: accountNumber,
-                    balance: parsedBalance
-                }
-            ];
-        });
+        const updated = await accountService.getAllAccounts();
+        setAccounts(updated);
 
         setRole("");
         setAccountName("");

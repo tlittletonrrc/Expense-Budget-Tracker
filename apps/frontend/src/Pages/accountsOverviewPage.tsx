@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import AddAccountForm from "../Components/Accounts/AddAccountForm";
 import AccountsTable from "../Components/Accounts/AccountsTable";
-import initialAccounts from "../Data/AccountsData.json";
-import type { BankAccount } from "../Types/BankAccount";
+import * as accountService from "../Services/AccountsService"
+import type { BankAccount } from "@shared/types/BankAccounts";
 import '../css/page.css'
 
 function AccountsOverviewPage({ setRoute }: { setRoute: React.Dispatch<React.SetStateAction<string>> }) {
@@ -19,19 +19,38 @@ function AccountsOverviewPage({ setRoute }: { setRoute: React.Dispatch<React.Set
         Why this way       : Separates concerns: the repository handles data, the service validates, 
                             and the component maintains state for the UI.
     */
-    const [accounts, setAccounts] = useState<BankAccount[]>(initialAccounts);
+    const [accounts, setAccounts] = useState<BankAccount[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setRoute("/Accounts");
+
+        const loadAccounts = async () => {
+            try {
+                const data = await accountService.getAllAccounts();
+                setAccounts(data);
+            } catch (err) {
+                console.error("Failed to load accounts", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadAccounts();
     }, [setRoute]);
+
+    if (loading) {
+        return <div className="page">Loading accounts...</div>;
+    }
 
     return (
         <div className="page">
             <h2>Accounts Overview</h2>
             <AccountsTable accounts={accounts} setAccounts={setAccounts} />
-            <AddAccountForm accounts={accounts} setAccounts={setAccounts} />
+            <AddAccountForm setAccounts={setAccounts} />
         </div>
     );
 }
+
 
 export default AccountsOverviewPage;
