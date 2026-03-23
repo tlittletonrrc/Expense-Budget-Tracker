@@ -1,8 +1,8 @@
-import Joi /*, { ObjectSchema }*/ from "joi";
+import Joi from "joi";
 
 
 export const allocationSchemas = {
-    // POST /allocations/new - Create new post
+    // POST /allocations/new - Create new allocation
     createAllocation: {
         body: Joi.object({
             userID: Joi.string().required().messages({
@@ -23,7 +23,7 @@ export const allocationSchemas = {
         }),
     },
 
-    // GET /allocations/:id - Get single post
+    // GET /allocations/:id - Get single allocation
     getAllocationByUser: {
         params: Joi.object({
         id: Joi.string().required().messages({
@@ -33,7 +33,7 @@ export const allocationSchemas = {
         })
     },
 
-    // PUT /allocations - Update post
+    // PUT /allocations - Update allocation
     updateAllocation: {
         body: Joi.object({
             userID: Joi.string().required().messages({
@@ -57,7 +57,7 @@ export const allocationSchemas = {
         }),
     },
 
-    // DELETE /allocations/:id - Delete post
+    // DELETE /allocations/:id - Delete allocation
     deleteAllocation: {
         params: Joi.object({
             id: Joi.string().required().messages({
