@@ -1,8 +1,18 @@
 import * as userService from "../../Services/UserService";
+import type { UserType } from "@shared/types/UserType"
+import { useEffect, useState } from "react";
+function DashboardSummaryBox({ userID }: { userID: string }) {
+        const [user, setUser] = useState(null);
 
-const user = await userService.getUserByIDService("cmmzmbejk00017k2k6p4rww7t") // Temp (Might have to be changed once deployed)
-function DashboardSummaryBox() {
+    useEffect(() => {
+        const getUser = async () => {
+            const data = await userService.getUserByIDService(userID);
+            setUser(data);
+        };
 
+        getUser();
+    }, [userID]);
+    
     const Summary = [
         {name: "Account Balance", value: user.balance},
         {name: "Savings Goal", value: user.savingsGoal},

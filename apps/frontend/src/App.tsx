@@ -19,7 +19,7 @@ function App() {
  
       <Routes>
         <Route path="/" element={ <> </> } />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard user={user}/>} />
         <Route path="/savings" element={<PiggyBank />} />
         <Route path="/accounts" element={<AccountsOverviewPage setRoute={setRoute}/>} />
         <Route path="/Allocations" element={<AllocationPage user={user}/>} />
