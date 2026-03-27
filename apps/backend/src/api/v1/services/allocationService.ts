@@ -3,12 +3,16 @@ import prisma from "../../../../prisma/client";
 
 
 export async function getAllocationByUser(UserID: string): Promise<Allocation[]> {
-    const userAllocations = await prisma.allocation.findMany({
-        where: {
-            userID: UserID
-        }
-    })
-    return userAllocations
+    try{
+        const userAllocations = await prisma.allocation.findMany({
+            where: {
+                userID: UserID
+            }
+        })
+        return userAllocations
+    } catch {
+        throw new Error("Error fetching allocations.")
+    }
 }
 
 
