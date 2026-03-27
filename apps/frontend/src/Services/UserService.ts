@@ -1,12 +1,23 @@
-import * as repo from "../Repositories/UserRepository"
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
+const TERM_ENDPOINT = "/user"
 
 
-export function getUserByIDService(UserID: string) {
-    const user = repo.getUserByID(UserID)
-
-    if (!user) {
-        throw new Error("No user exists by that id")
+export async function getUserByIDService(UserID: string) {
+    if (!UserID) {
+        throw new Error("Must provide user id.")
     }
-
-    return user
+    try{
+        const userResponse: Response = await fetch(
+            `${BASE_URL}${TERM_ENDPOINT}/${UserID}`
+        );
+    
+        if(!userResponse.ok) {
+            throw new Error(`Failed to fetch user with id ${UserID}`);
+        }
+    
+        const json= await userResponse.json();
+        return json.user;
+    } catch {
+        throw new Error("Error fetching user.")
+    }
 }
