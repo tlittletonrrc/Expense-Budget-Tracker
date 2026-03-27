@@ -1,6 +1,7 @@
-// ===========================================================
+// ===========================================================================
 // Repository in front end due to confusion from course notes.
-// ===========================================================
+// Idea was that the service does the validation/logic and repo send requests.
+// ===========================================================================
 
 import type { Allocation } from "@shared/types/Allocation"
 import type { NewAllocation } from "@shared/types/NewAllocation"
@@ -53,7 +54,7 @@ export async function createAllocation(newAllocation: NewAllocation) {
         },
     });
 
-    if (!response) {
+    if (!response.ok) {
         throw new Error("Error creating allocation.")
     }
 

@@ -61,8 +61,8 @@ export const allocationSchemas = {
     deleteAllocation: {
         params: Joi.object({
             id: Joi.string().required().messages({
-                "any.required": "Post ID is required",
-                "string.empty": "Post ID cannot be empty",
+                "any.required": "allocation ID is required",
+                "string.empty": "allocation ID cannot be empty",
             }),
         }),
     },
