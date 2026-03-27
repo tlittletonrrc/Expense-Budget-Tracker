@@ -1,17 +1,12 @@
-import { useUserProfileDisplay } from "../../hooks/JsonHook";
 import * as userService from "../../Services/UserService";
 
+const user = await userService.getUserByIDService("cmmzmbejk00017k2k6p4rww7t") // Temp (Might have to be changed once deployed)
 function DashboardSummaryBox() {
-    const user = userService.getUserByIDService("user_001")
-    const userProfile = useUserProfileDisplay({
-            ...user,
-            accounts: [],
-        });
-    
+
     const Summary = [
-        {name: "Account Balance", value: userProfile.balance},
-        {name: "Left To Spend", value: userProfile.balance - userProfile.savingsGoal},
-        {name: "Payments Due", value: userProfile.paymentsDue}
+        {name: "Account Balance", value: user.balance},
+        {name: "Savings Goal", value: user.savingsGoal},
+        {name: "Left To Spend", value: user.savingsGoal - user.balance}
     ]
 
     return(
