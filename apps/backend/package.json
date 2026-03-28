@@ -27,6 +27,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "cors": "^2.8.6",
+    "joi": "^18.0.2",
     "express": "^5.2.1"
   }
 }
