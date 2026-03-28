@@ -33,5 +33,5 @@ function DashboardSummaryBox({ userID }: { userID: string }) {
     </div>
 );
 }
-
+}
 export default DashboardSummaryBox;
