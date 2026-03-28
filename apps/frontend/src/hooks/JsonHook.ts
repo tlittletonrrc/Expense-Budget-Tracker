@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as accountService from "../Services/AccountsService";
+// import * as accountService from "../Services/AccountsService";
 
 /**
  * @param user: User object loaded from JSON
@@ -92,7 +92,7 @@ export function useUserProfileDisplay(user: {
         setBalance,
         updateSavingsGoal,
         updateAccountBalance,
-        addAccount,
-        deleteAccount,
+        // addAccount,
+        // deleteAccount,
     };
 }
