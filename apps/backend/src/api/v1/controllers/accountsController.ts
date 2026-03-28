@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
 import * as accountService from "../services/accountsService";
-import type { Account } from "@prisma/client";
+import type { BankAccount } from "@shared/types/BankAccounts";
 
 export async function getAllAccounts(_req: Request, res: Response): Promise<void> {
     try {
-        const accounts: Account[] = await accountService.fetchAllAccounts();
+        const accounts: BankAccount[] = await accountService.fetchAllAccounts();
         res.status(200).json(accounts);
     } catch (error: any) {
         res.status(500).json({ error: error.message });
@@ -13,22 +13,10 @@ export async function getAllAccounts(_req: Request, res: Response): Promise<void
 
 export async function createAccount(req: Request, res: Response): Promise<void> {
     try {
-        const newAccount = await accountService.createAccount(req.body);
-        res.status(201).json(newAccount);
+        const account = await accountService.createOrUpdateAccount(req.body);
+        res.status(200).json(account); // 200 because it may have been updated
     } catch (error: any) {
         res.status(500).json({ error: error.message });
-    }
-}
-
-export async function updateAccount(req: Request, res: Response): Promise<void> {
-    const id = Number(req.params.id);
-    try {
-        const updatedAccount = await accountService.updateAccount(id, req.body);
-        res.status(200).json(updatedAccount);
-    } catch (error: any) {
-        res.status(500).json({
-            Error: "Unable to update Accounts"
-        })
     }
 }
 
