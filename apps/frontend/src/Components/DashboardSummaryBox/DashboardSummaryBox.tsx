@@ -1,6 +1,6 @@
 import * as userService from "../../Services/UserService";
 
-const user = await userService.getUserByIDService("cmmzmbejk00017k2k6p4rww7t") // Temp (Might have to be changed once deployed)
+const user = await userService.getUserByIDService("cmn9i6pyo0000tj3c4hkvjeje") // Temp (Might have to be changed once deployed)
 function DashboardSummaryBox() {
 
     const Summary = [
