@@ -59,28 +59,28 @@ export function useUserProfileDisplay(user: {
         );
     };
 
-    const addAccount = (account: {
-        role: string;
-        name: string;
-        accountNumber: string;
-        balance: number;
-    }) => {
-        setAccounts((prev) => {
-            const exists = prev.some(a => a.accountNumber === account.accountNumber);
-            if (exists) {
-                return prev.map(a => a.accountNumber === account.accountNumber ? account : a);
-            }
-            return [...prev, account];
-        });
+    // const addAccount = (account: {
+    //     role: string;
+    //     name: string;
+    //     accountNumber: string;
+    //     balance: number;
+    // }) => {
+    //     setAccounts((prev) => {
+    //         const exists = prev.some(a => a.accountNumber === account.accountNumber);
+    //         if (exists) {
+    //             return prev.map(a => a.accountNumber === account.accountNumber ? account : a);
+    //         }
+    //         return [...prev, account];
+    //     });
         
-        accountService.createAccountService(account);
-    };
+    //     accountService.createAccountService(account);
+    // };
 
-    const deleteAccount = (index: number) => {
-        setAccounts((prev) => prev.filter((_, i) => i !== index));
+    // const deleteAccount = (index: number) => {
+    //     setAccounts((prev) => prev.filter((_, i) => i !== index));
         
-        accountService.deleteAccountService(index);
-    };
+    //     accountService.deleteAccountService(index);
+    // };
 
     return {
         userID: user.userID,
