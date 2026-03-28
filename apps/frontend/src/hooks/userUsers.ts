@@ -12,9 +12,9 @@ function useUser(userId: string) {
         };
 
         getUser();
-            }, [userId]);
+    }, [userId]);
 
-            return user;
-        }
+    return user;
+}
 
 export default useUser;
