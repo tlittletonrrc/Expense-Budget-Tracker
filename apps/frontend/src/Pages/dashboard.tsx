@@ -3,11 +3,11 @@ import AccountsOverview from "../Components/AccountsOverview/accountsOverview";
 import DashboardSummaryBox from "../Components/DashboardSummaryBox/DashboardSummaryBox";       
 import "../css/page.css";
 
-function Dashboard() {
+function Dashboard({ userID }: { userID: string }) {
     return (
         <div className="page">
             <Header />
-            <DashboardSummaryBox />
+            <DashboardSummaryBox userID={userID} />
             <AccountsOverview />
         </div>
     );
