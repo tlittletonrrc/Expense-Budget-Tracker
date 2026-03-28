@@ -1,22 +1,13 @@
-import * as userService from "../../Services/UserService";
-import type { UserType } from "@shared/types/UserType"
-import { useEffect, useState } from "react";
+import useUser from "../../hooks/userUsers";
+
 function DashboardSummaryBox({ userID }: { userID: string }) {
-        const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const getUser = async () => {
-            const data = await userService.getUserByIDService(userID);
-            setUser(data);
-        };
-
-        getUser();
-    }, [userID]);
+    const user = useUser(userID);
+    if (!user) return <div>Loading summary</div>;
     
     const Summary = [
         {name: "Account Balance", value: user.balance},
         {name: "Savings Goal", value: user.savingsGoal},
-        {name: "Left To Spend", value: user.savingsGoal - user.balance}
+        {name: "Left To Save", value: user.savingsGoal - user.balance}
     ]
 
     return(
