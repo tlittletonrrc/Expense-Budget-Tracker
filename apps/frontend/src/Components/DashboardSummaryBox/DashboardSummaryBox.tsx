@@ -1,6 +1,4 @@
-import * as userService from "../../Services/UserService";
-
-const user = await userService.getUserByIDService("cmn9i6pyo0000tj3c4hkvjeje") // Temp (Might have to be changed once deployed)
+import useUser from "../../hooks/userUsers";
 
 function DashboardSummaryBox({ userID }: { userID: string }) {
     const user = useUser(userID);
