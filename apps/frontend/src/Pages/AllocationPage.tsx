@@ -33,15 +33,16 @@ function AllocationPage({user}: { user: string }) {
     return(
         <div className="page">
             <h2>Budget Allocation</h2>
-            <BudgetAllocationTable 
-            allocations={allocations} 
-            deleteAllocation={deleteAllocation}/>
-
+            
             <BudgetAllocationForm 
             userID={user}
             addAllocation={addAllocation}
             allocations={allocations}
             updateAllocation={updateAllocation}/>
+
+            <BudgetAllocationTable 
+            allocations={allocations} 
+            deleteAllocation={deleteAllocation}/>
         </div> 
 )}
 
