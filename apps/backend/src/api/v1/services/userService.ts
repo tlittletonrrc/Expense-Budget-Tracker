@@ -30,8 +30,6 @@ export const updateUser = async (updatedUser: UserType): Promise<UserType> => {
             where: {userID: updatedUser.userID},
             data: {
                 name: updatedUser.name,
-                email: updatedUser.email,
-                password: updatedUser.password,
                 balance: updatedUser.balance,
                 savingsGoal: updatedUser.savingsGoal
             }

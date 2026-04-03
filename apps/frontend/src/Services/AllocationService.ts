@@ -6,20 +6,28 @@ const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/v1`;
 const ALLOCATION_ENDPOINT = "/allocations"
 
 
-export async function getAllocationByUserIDService(UserID: string):Promise<Allocation[]> {
+export async function getAllocationByUserIDService(UserID: string, sessionToken: string):Promise<Allocation[]> {
     if (!UserID) {
         throw new Error("Must Provide UserID for get allocation service.")
     }
+    if (!sessionToken) {
+        throw new Error("Unauthorized")
+    }
+
     try{
         const termResponse: Response = await fetch(
-        `${BASE_URL}${ALLOCATION_ENDPOINT}/${UserID}`
-    );
+            `${BASE_URL}${ALLOCATION_ENDPOINT}/${UserID}`, {
+                headers: {
+                    Authorization: `Bearer ${sessionToken}`
+                }
+            }
+        );
 
-    if(!termResponse.ok) {
-        throw new Error(`Failed to fetch term with id ${UserID}`);
-    }
-    const json = await termResponse.json();
-    return json.Allocations;
+        if(!termResponse.ok) {
+            throw new Error(`Failed to fetch term with id ${UserID}`);
+        }
+        const json = await termResponse.json();
+        return json.Allocations;
 
     } catch {
         throw new Error("Error fetching users allocations.")
@@ -27,9 +35,12 @@ export async function getAllocationByUserIDService(UserID: string):Promise<Alloc
 }
 
 
-export async function createAllocationService(NewAllocation: NewAllocation) {
+export async function createAllocationService(NewAllocation: NewAllocation, sessionToken: string) {
     if (!NewAllocation.userID || !NewAllocation.amount || !NewAllocation.category || !NewAllocation.date) {
         throw new Error("Missing allocation fields")
+    }
+    if (!sessionToken) {
+        throw new Error("Unauthorized")
     }
 
     try {
@@ -38,6 +49,7 @@ export async function createAllocationService(NewAllocation: NewAllocation) {
             body: JSON.stringify(NewAllocation),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionToken}`
             },
         });
 
@@ -53,10 +65,14 @@ export async function createAllocationService(NewAllocation: NewAllocation) {
 }
 
 
-export async function updateAllocationService(NewAllocation: Allocation) {
+export async function updateAllocationService(NewAllocation: Allocation, sessionToken: string) {
     if (!NewAllocation.userID || !NewAllocation.allocation_id || !NewAllocation.amount || !NewAllocation.category || !NewAllocation.date) {
         throw new Error("Missing UserID, Allocation id, amount, category, or date.")
     }
+    if (!sessionToken) {
+        throw new Error("Unauthorized")
+    }
+
     try {
         const updateResponse: Response = await fetch(
         `${BASE_URL}${ALLOCATION_ENDPOINT}`,
@@ -65,6 +81,7 @@ export async function updateAllocationService(NewAllocation: Allocation) {
             body: JSON.stringify({...NewAllocation}),
             headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionToken}`
                 }
             }
         );
@@ -81,9 +98,12 @@ export async function updateAllocationService(NewAllocation: Allocation) {
 }
 
 
-export async function deleteAllocationService(allocation_id: number) {
+export async function deleteAllocationService(allocation_id: number, sessionToken: string) {
     if (!allocation_id) {
         throw new Error("Missing allocation id")
+    }
+    if (!sessionToken) {
+        throw new Error("Unauthorized")
     }
     try{
         const deleteResponse: Response = await fetch(
@@ -92,6 +112,7 @@ export async function deleteAllocationService(allocation_id: number) {
                     method: "DELETE",
                     headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${sessionToken}`
                 }
             }
         );

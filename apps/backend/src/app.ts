@@ -5,11 +5,13 @@ import corsOptions from "../config/cors";
 import allocationRouter from "./api/v1/routes/allocationRoutes"
 import userRouter from "./api/v1/routes/userRoutes"
 import accountRouter from "./api/v1/routes/accountsRoutes";
+import { clerkMiddleware } from "@clerk/express";
 
 const app: Express = express();
 
 dotenv.config();
 app.use(express.json());
+app.use(clerkMiddleware());
 app.use(cors(corsOptions));
 
 app.use("/api/v1", allocationRouter)

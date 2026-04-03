@@ -1,60 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SignedIn, SignedOut, UserButton, SignInButton, SignUpButton } from "@clerk/clerk-react";
 import './Navbar.css';
 
-interface NavItem {
-  id: number;
-  label: string;
-  path: string;
-}
-
 const Navbar: React.FC = () => {
-  const navItems: NavItem[] = [
-    {
-      id: 1,
-      label: 'Dashboard',
-      path: '/dashboard'
-    },
-    {
-      id: 2,
-      label: 'Accounts',
-      path: '/accounts'
-    },
-    {
-      id: 3,
-      label: 'Allocations',
-      path: '/Allocations'
-    },
-    {
-      id: 4,
-      label: 'Savings',
-      path: '/savings'
-    },
-    {
-      id: 5,
-      label: 'Account (Log in and out)',
-      path: '/savings'
-    },
-  ];
+return (
+  <nav className="navbar">
 
-  return (
-    <nav className="navbar">
-      <div className="navbar-header">
-        <Link to="/" className="logo-link">
-          <h2>Expense Budget Tracker</h2>
-        </Link>
-      </div>
+    <div className="navbar-header">
+      <Link to="/" className="logo-link">
+        <h2>Expense Budget Tracker</h2>
+      </Link>
+    </div>
 
-      <ul className="nav-list">
-        {navItems.map((item) => (
-          <li key={item.id} className="nav-item">
-            <Link to={item.path} className="nav-link">
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <ul className="nav-list">
+      <SignedIn>
+        <li className="nav-item">
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/accounts" className="nav-link">Accounts</Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/allocations" className="nav-link">Allocations</Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/savings" className="nav-link">Savings</Link>
+        </li>
+
+        <li className="nav-item">
+          <UserButton />
+        </li>
+      </SignedIn>
+
+      <SignedOut>
+        <li className="nav-item">
+          <SignInButton mode="redirect">
+            <button className="sign-in-button">Sign In</button>
+          </SignInButton>
+        </li>
+
+        <li className="nav-item">
+          <SignUpButton mode="redirect">
+            <button className="sign-up-button">Sign Up</button>
+          </SignUpButton>
+        </li>
+      </SignedOut>
+
+    </ul>
+  </nav>
   );
 };
 

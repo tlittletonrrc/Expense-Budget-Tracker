@@ -5,17 +5,13 @@ export const userSchemas = {
     // POST /user/new - Create new user
     createUser: {
         body: Joi.object({
+            userID: Joi.string().required().messages({
+                "any.required": "User ID is required",
+                "string.empty": "User ID cannot be empty",
+            }),
             name: Joi.string().required().messages({
                 "any.required": "name ID is required",
                 "string.empty": "name ID cannot be empty",
-            }),
-            email: Joi.string().required().messages({
-                "any.required": "email is required",
-                "string.empty": "email cannot be empty",
-            }),
-            password: Joi.string().required().messages({
-                "any.required": "password is required",
-                "string.empty": "password cannot be empty",
             }),
             balance: Joi.number().required().messages({
                 "any.required": "balance is required",
@@ -46,14 +42,6 @@ export const userSchemas = {
             name: Joi.string().required().messages({
                 "any.required": "name ID is required",
                 "string.empty": "name ID cannot be empty",
-            }),
-            email: Joi.string().required().messages({
-                "any.required": "email is required",
-                "string.empty": "email cannot be empty",
-            }),
-            password: Joi.string().required().messages({
-                "any.required": "password is required",
-                "string.empty": "password cannot be empty",
             }),
             balance: Joi.number().required().messages({
                 "any.required": "balance is required",
