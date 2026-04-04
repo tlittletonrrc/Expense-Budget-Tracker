@@ -46,8 +46,8 @@ function BudgetAllocationForm({ addAllocation, updateAllocation, allocations, us
                 category: exists.category,
                 amount: amount,
                 date: date
-                });
-            }
+            });
+        }
 };
     return(
         <>

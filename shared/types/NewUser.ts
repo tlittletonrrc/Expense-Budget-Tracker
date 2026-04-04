@@ -1,7 +1,6 @@
 export type NewUser = {
+    userID: string,
     name: string,
-    email: string,
-    password: string,
     balance: number,
     savingsGoal: number
 }

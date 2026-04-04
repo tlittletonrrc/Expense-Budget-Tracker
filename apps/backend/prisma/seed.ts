@@ -20,6 +20,13 @@ async function main() {
         }
     );
 
+    const createUser = await prisma.user.createMany(
+        {
+            data: UserSeedData,
+            skipDuplicates: true
+        }
+    );
+
     const createAllocations = await prisma.allocation.createMany(
         {
             data: AllocationSeedData,
@@ -27,12 +34,6 @@ async function main() {
         }
     );
 
-    const createUser = await prisma.user.createMany(
-        {
-            data: UserSeedData,
-            skipDuplicates: true
-        }
-    );
     console.log(`Created ${createUser.count} allocations.`);
     console.log(`Created ${createAllocations.count} allocations.`);
     console.log(`Created ${createdAccounts.count} accounts.`);
