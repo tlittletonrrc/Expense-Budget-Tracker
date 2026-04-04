@@ -17,7 +17,6 @@ export const findOrCreateUser = async(
         const auth = getAuth(req);
         const userId = auth.userId;
         
-        // Stores new user with empty info
         if(userId) {
             let backendUser : User|null = await userService.GetUserByID(userId);
             if(!backendUser) {
@@ -25,7 +24,7 @@ export const findOrCreateUser = async(
                 const name = String(clerkUser.fullName)
                 
                 backendUser= await userService.createUser({
-                    userID: userId,
+                    userID: String(userId),
                     name: name,
                     balance: 0,
                     savingsGoal: 0
@@ -33,8 +32,6 @@ export const findOrCreateUser = async(
             }
         }
         
-        // If userId not found with auth, set userId to null 
-        // Prevents userId from being included erroneously in the request body
         // req.userId = userId;
         next();
     } catch(error) {

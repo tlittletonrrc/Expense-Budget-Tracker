@@ -1,0 +1,16 @@
+{
+   "relatedProjects": ["<Front-End-Project-ID>"],
+   "rewrites": [
+      {
+            "source": "/(.*)",
+            "destination": "/api/v1" 
+      }
+   ],
+
+   "git": {
+     "deploymentEnabled": {
+         "*": false,
+         "main": true
+     }
+ }
+}

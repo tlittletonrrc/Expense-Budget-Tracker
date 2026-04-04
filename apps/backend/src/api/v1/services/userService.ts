@@ -3,16 +3,12 @@ import type { NewUser} from "@shared/types/NewUser"
 import prisma from "../../../../prisma/client";
 
 
-export const GetUserByID = async (UserID: string): Promise<UserType> => {
+export const GetUserByID = async (UserID: string): Promise<UserType | null> => {
     const user = await prisma.user.findUnique({
         where: {
             userID: UserID
         }
     })
-
-    if (!user) {
-        throw new Error("Unable to find user by that id.")
-    }
 
     return user
 }
@@ -27,11 +23,11 @@ export const createUser = async (newUser: NewUser): Promise<UserType> => {
 
 export const updateUser = async (updatedUser: UserType): Promise<UserType> => {
     return await prisma.user.update({
-            where: {userID: updatedUser.userID},
-            data: {
-                name: updatedUser.name,
-                balance: updatedUser.balance,
-                savingsGoal: updatedUser.savingsGoal
-            }
-        })
+        where: {userID: updatedUser.userID},
+        data: {
+            name: updatedUser.name,
+            balance: updatedUser.balance,
+            savingsGoal: updatedUser.savingsGoal
+        }
+    })
 }

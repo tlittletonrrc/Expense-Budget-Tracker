@@ -4,6 +4,7 @@ import type { Allocation } from "@shared/types/Allocation";
 import type { NewAllocation } from "@shared/types/NewAllocation";
 import { useAuth } from "@clerk/clerk-react";
 
+
 export function useAllocations(userID: string) {
     const [allocations, setAllocations] = useState<Allocation[]>([]);
     const { getToken, isSignedIn } = useAuth();
@@ -24,15 +25,13 @@ export function useAllocations(userID: string) {
 
     const addAllocation = async (newAllocation: NewAllocation) => {
         let sessionToken = isSignedIn? await getToken() : null;
-        console.log(sessionToken)
+       
         if (!sessionToken) {
             throw new Error("Unauthorized to create allocation")
         } 
 
         const createdAllocation = await allocationService.createAllocationService(newAllocation, sessionToken);
         setAllocations(prev => [...prev, createdAllocation]);
-        
-
     };
 
 
