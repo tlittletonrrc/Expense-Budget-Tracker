@@ -81,9 +81,8 @@ export const AllocationSeedData: any[] = [
 
 export const UserSeedData: any[] = [
     {
+        "userID": "user_001",
         "name": "John Doe",
-        "email": "johndoe@gmail.com",
-        "password": "password",
         "balance": 9454,
         "savingsGoal": 10000
     }
