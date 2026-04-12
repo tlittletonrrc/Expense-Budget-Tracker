@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Account" (
     "id" SERIAL NOT NULL,
+    "userID" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "accountNumber" TEXT NOT NULL,
