@@ -1,18 +1,27 @@
+import { useAuth } from "@clerk/clerk-react";
 import type { BankAccount } from "@shared/types/BankAccounts";
 import * as accountService from "../../Services/AccountsService";
 import "../../css/table.css";
 
 function AccountsTable({
     accounts,
-    setAccounts
+    setAccounts,
+    userID
 }: {
     accounts: BankAccount[];
     setAccounts: React.Dispatch<React.SetStateAction<BankAccount[]>>;
+    userID: string;
 }) {
 
+    const { getToken, isLoaded, isSignedIn } = useAuth();
+
     async function deleteAccount(id: number) {
-        await accountService.deleteAccount(id);
-        const updated = await accountService.getAllAccounts();
+
+        if (!isLoaded || !isSignedIn) return;
+        const token = await getToken();
+
+        await accountService.deleteAccount(id, token);
+        const updated = await accountService.getAllAccounts(userID, token);
         setAccounts(updated);
     }
 
