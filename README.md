@@ -68,3 +68,69 @@ A website that allows you to budget and keep track of all your finances so you c
 - 
 
 ### Jashandeep 
+
+
+
+# Local Setup
+
+## Install
+1. run `npm install`
+
+## Set up the Database
+1. Create an empty PostgreSQL database and note its url. Note you can use any SQL databases but change `apps/backend/prisma/schema.prisma` provider accordingly. there is also a docker compose file in `apps/backend` that you can use for the database
+   1. if you are going to use the docker compose file you first get wsl running and then open docker desktop. Once docker desktop is running you then cd into `apps/backend` and run the command docker compose up -d.
+
+## Create Clerk account and project
+1. [Create an account with Clerk](clerk.com) and a Free Project
+2. In the *Dashboard* navigate to *Developers/API Keys*
+3. Copy the `PUBLIC` and `SECRET_KEY` values
+
+## Add .envs
+1. Create `apps/frontend/.env` and add:
+```
+VITE_API_BASE_URL=http://localhost:3000
+
+CLERK_SECRET_KEY=<clerk-secret-key>
+VITE_CLERK_PUBLISHABLE_KEY=<clerk-publishable-key>
+```
+
+ex
+```
+VITE_API_BASE_URL=http://localhost:3000
+
+CLERK_SECRET_KEY=sk_test_9Hvn4s56SWEzG7Wb48HNGf3Bfn4g6sRiHRtSFRn0dr
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_YWR2YW5jZWQtd29sZi00My5jbGVyay5hY2NvdW50cy5kZXYk
+```
+
+2. Create `apps/backend/.env` and add:
+```
+FRONTEND_URL=http://localhost:<your-localhost-port>
+PORT=3000
+DATABASE_URL=<local-postgres-db-url>
+
+CLERK_PUBLISHABLE_KEY=<clerk-publishable-key>
+CLERK_SECRET_KEY=<clerk-secret-key>
+```
+
+ex
+```
+FRONTEND_URL=http://localhost:5173
+PORT=3000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5433/expense_budget_tracker
+
+CLERK_PUBLISHABLE_KEY=pk_test_YWR2YW5jZWQtd29sZi00My5jbGVyay5hY2NvdW50cy5kZXYk
+CLERK_SECRET_KEY=sk_test_9Hvn4s56SWEzG7Wb48HNGf3Bfn4g6sRiHRtSFRn0dr
+```
+
+## Migrate and seed database
+1. `cd apps/backend/`
+2. `npx prisma migrate dev --name <Name of migration>` ex `npx prisma migrate dev --name first`
+3. `npx prisma migrate dev`
+3. `npx prisma generate`
+5. `npx prisma db seed`
+
+## Run the app
+1. go back to the root folder. if you are still in `apps/backend` follow the next 2 steps if not go to the last step.
+2. `cd ..`
+3. `cd ..`
+4. `npm run dev`
