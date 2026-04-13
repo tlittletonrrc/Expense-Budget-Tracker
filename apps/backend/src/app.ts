@@ -10,9 +10,9 @@ import { clerkMiddleware } from "@clerk/express";
 const app: Express = express();
 
 dotenv.config();
-app.use(express.json());
 app.use(cors(corsOptions));
 app.options("*", cors());
+app.use(express.json());
 app.use(clerkMiddleware());
 
 app.use("/api/v1", allocationRouter)
