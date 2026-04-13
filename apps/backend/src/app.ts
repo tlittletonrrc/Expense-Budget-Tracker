@@ -11,7 +11,6 @@ const app: Express = express();
 
 dotenv.config();
 app.use(cors(corsOptions));
-app.options("*", cors());
 app.use(express.json());
 app.use(clerkMiddleware());
 
