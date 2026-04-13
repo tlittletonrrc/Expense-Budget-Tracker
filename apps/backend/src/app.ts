@@ -11,8 +11,8 @@ const app: Express = express();
 
 dotenv.config();
 app.use(express.json());
-app.use(clerkMiddleware());
 app.use(cors(corsOptions));
+app.use(clerkMiddleware());
 
 app.use("/api/v1", allocationRouter)
 app.use("/api/v1", userRouter)
