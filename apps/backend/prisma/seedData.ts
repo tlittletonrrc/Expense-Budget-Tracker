@@ -1,11 +1,13 @@
 export const AccountsSeedData: any[] = [
 { 
+    "userID": "user_001",
     "role": "Checking", 
     "name": "Tarryn Checking", 
     "accountNumber": "CHK001", 
     "balance": 2000 
 },
 { 
+    "userID": "user_001",
     "role": "Savings", 
     "name": "Tarryn Savings", 
     "accountNumber": "SAV001", 
@@ -13,6 +15,7 @@ export const AccountsSeedData: any[] = [
 },
 
 {
+    "userID": "user_001",
     "role": "Checking", 
     "name": "Alex Checking", 
     "accountNumber": "CHK002", 
@@ -20,6 +23,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Savings", 
     "name": "Alex Savings", 
     "accountNumber": "SAV002", 
@@ -27,6 +31,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Checking", 
     "name": "Jordan Checking", 
     "accountNumber": "CHK003", 
@@ -34,6 +39,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Savings", 
     "name": "Jordan Savings", 
     "accountNumber": "SAV003", 
@@ -41,6 +47,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Checking", 
     "name": "Morgan Checking", 
     "accountNumber": "CHK004", 
@@ -48,6 +55,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Savings", 
     "name": "Morgan Savings", 
     "accountNumber": "SAV004", 
@@ -55,6 +63,7 @@ export const AccountsSeedData: any[] = [
 },
 
 { 
+    "userID": "user_001",
     "role": "Checking", 
     "name": "Sam Checking", 
     "accountNumber": "CHK005", 
@@ -62,6 +71,7 @@ export const AccountsSeedData: any[] = [
 },
 
 {
+    "userID": "user_001",
     "role": "Savings", 
     "name": "Sam Savings", 
     "accountNumber": "SAV005", 

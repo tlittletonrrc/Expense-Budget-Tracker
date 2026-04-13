@@ -1,18 +1,22 @@
 import { useState } from "react";
+import { useAuth } from "@clerk/clerk-react";
 import type { BankAccount } from "@shared/types/BankAccounts";
 import * as accountService from "../../Services/AccountsService";
 import "../../css/form.css";
 
 function AddAccountForm({
-    setAccounts
+    setAccounts, userID
 }: {
     setAccounts: React.Dispatch<React.SetStateAction<BankAccount[]>>;
+    userID: string;
 }) {
     const [role, setRole] = useState("");
     const [accountName, setAccountName] = useState("");
     const [accountNumber, setAccountNumber] = useState("");
     const [balance, setBalance] = useState("");
     const [error, setError] = useState("");
+
+    const { getToken, isLoaded, isSignedIn } = useAuth();
 
     const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,14 +43,19 @@ function AddAccountForm({
             return;
         }
 
-        await accountService.createAccount({
-            role,
-            name: accountName,
-            accountNumber,
-            balance: parsedBalance,
-        } as BankAccount);
+        if (!isLoaded || !isSignedIn) return;
+        
+        const token = await getToken();
 
-        const updated = await accountService.getAllAccounts();
+        await accountService.createAccount({
+        userID,
+        role,
+        name: accountName,
+        accountNumber,
+        balance: parsedBalance,
+        } as BankAccount, token);
+
+        const updated = await accountService.getAllAccounts(userID, token);
         setAccounts(updated);
 
         setRole("");

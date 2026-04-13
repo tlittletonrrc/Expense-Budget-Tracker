@@ -4,6 +4,10 @@ export const accountSchemas = {
     // POST /accounts/new - create or upsert account
     createAccount: {
         body: Joi.object({
+            userID: Joi.string().required().messages({
+                "any.required": "User ID is required",
+                "string.empty": "User ID cannot be empty",
+            }),
             role: Joi.string().required().messages({
                 "any.required": "Role is required",
                 "string.empty": "Role cannot be empty",

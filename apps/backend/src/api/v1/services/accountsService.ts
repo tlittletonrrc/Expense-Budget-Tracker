@@ -1,19 +1,20 @@
 import type { BankAccount } from "@shared/types/BankAccounts";
 import prisma from "../../../../prisma/client";
 
-export const fetchAllAccounts = async (): Promise<BankAccount[]> => {
-    return prisma.account.findMany();
+export async function fetchAllAccounts (UserID: string): Promise<BankAccount[]> {
+    return prisma.account.findMany({ where: { userID: UserID } });
 }
 
 export const createOrUpdateAccount = async (accountData: {
+    userID: string;
     role: string,
     name: string,
     accountNumber: string,
     balance: number
 }): Promise<BankAccount> => {
-    // Check if account exists
     const existingAccount = await prisma.account.findFirst({
         where: {
+            userID: accountData.userID,
             role: accountData.role,
             name: accountData.name,
             accountNumber: accountData.accountNumber
