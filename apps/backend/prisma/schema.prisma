@@ -14,6 +14,7 @@ datasource db {
 
 model Account {
   id Int @id @default(autoincrement())
+  userID String
   role String
   name String
   accountNumber String
@@ -33,8 +34,6 @@ model Allocation {
 model User {
   userID        String @id @default(cuid())
   name          String
-  email         String
-  password      String
   balance       Float
   savingsGoal   Float
 }
