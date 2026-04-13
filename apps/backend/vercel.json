@@ -1,16 +1,31 @@
 {
-   "relatedProjects": ["prj_2BU28aMObrKkczt60fXEljah3Grg"],
-   "rewrites": [
-      {
-            "source": "/(.*)",
-            "destination": "/api/v1" 
-      }
-   ],
-
-   "git": {
-     "deploymentEnabled": {
-         "*": false,
-         "main": true
-     }
- }
+  "relatedProjects": ["prj_2BU28aMObrKkczt60fXEljah3Grg"],
+  "git": {
+    "deploymentEnabled": {
+      "*": true
+    }
+  },
+  "outputDirectory": "dist",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "dist/**"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "https://expense-budget-tracker-delta.vercel.app" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    }
+  ]
 }

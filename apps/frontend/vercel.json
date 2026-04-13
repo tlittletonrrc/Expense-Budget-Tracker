@@ -1,14 +1,19 @@
 {
-    "relatedProjects": ["prj_UiCeCa6M8GCH82ALfmZ9lIGD3Acf"],
+   "relatedProjects": ["prj_UiCeCa6M8GCH82ALfmZ9lIGD3Acf"],
 
-    "git": {
-        "deploymentEnabled": {
-            "*": false,
-            "main": true
-        }
+   "git": {
+     "deploymentEnabled": {
+         "*": true
+     }
+ },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.ts"
     },
-
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-    ]
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
