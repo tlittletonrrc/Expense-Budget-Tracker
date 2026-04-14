@@ -48,6 +48,10 @@ return (
             <button className="sign-up-button">Sign Up</button>
           </SignUpButton>
         </li>
+
+        <li className="nav-item">
+          <Link to="/savings" className="nav-link">Savings Demo</Link>
+        </li>
       </SignedOut>
 
     </ul>
