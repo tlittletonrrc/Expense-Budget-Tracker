@@ -65,14 +65,24 @@ A website that allows you to budget and keep track of all your finances so you c
 ### Thomas
 - T.2: Development SQL Database
 - T.3: Prisma Installation and Client Initialization
-- 
 
-### Jashandeep 
 
+## Sprint 5 Tasks
+### Tarryn
+- T.1: Clerk Auth Setup
+- T.3: Back-end User Management 
+- T.4: User Login/Registration
+- I.1: Custom User-Associated Data and Session Management *(filters clerk user id's to only show the signed in users allocations, passes session token for route authentication)*
+- I.2: Project Retrospective
+
+### Thomas
+- T.2: Team Vercel Account/Management
+- T.5: Local Setup Instructions
+- I.1: Custom User-Associated Data and Session Management
+- I.2: Project Retrospective
 
 
 # Local Setup
-
 ## Install
 1. run `npm install`
 
