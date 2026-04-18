@@ -11,7 +11,7 @@ export async function getAllAccounts(UserID: string, sessionToken: any): Promise
     if (!sessionToken) {
         throw new Error("Unauthorized")
     }
-    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}/?userID=${UserID}`, { headers: { Authorization: `Bearer ${sessionToken}` } } );
+    const response: Response = await fetch(`${BASE_URL}${ACCOUNT_ENDPOINT}/${UserID}`, { headers: { Authorization: `Bearer ${sessionToken}` } } );
     if (!response.ok) {
         throw new Error("Failed to fetch accounts.");
     }
