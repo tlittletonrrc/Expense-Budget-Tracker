@@ -1,0 +1,17 @@
+.signed-out-form{
+    background-color: #1F2937;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border: 1;
+    border-radius: 15px;
+}
+
+.sign-in-message {
+    padding-top: 20px;
+    padding-bottom: 6px;
+}
+
+.sign-up-message {
+    padding-top: 15px;
+    padding-bottom: 6px;
+}
