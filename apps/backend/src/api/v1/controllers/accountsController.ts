@@ -4,7 +4,7 @@ import type { BankAccount } from "@shared/types/BankAccounts";
 
 export async function getAllAccounts(req: Request, res: Response): Promise<void> {
     try {
-        const userID = String(req.query.userID);
+        const userID = String(req.params.userID);
 
         const accounts: BankAccount[] = await accountService.fetchAllAccounts(userID);
 
