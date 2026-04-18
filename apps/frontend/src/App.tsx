@@ -4,6 +4,7 @@ import './App.css'
 // React
 // import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 // Components
 import Footer from "./Components/Footer/Footer";
@@ -12,9 +13,11 @@ import AllocationPage from "./Pages/AllocationPage";
 import PiggyBank from "./Pages/PiggyBank"
 import AccountsOverviewPage from "./Pages/accountsOverviewPage"
 import Dashboard from './Pages/dashboard';
+import SignedOutPage from './Components/SignedOutPage/SignedOutPage';
+import { ProtectedRoute } from './Auth/Protected';
 
 //Clerk
-import { useAuth } from '@clerk/clerk-react';
+import { useAuth, SignedOut } from '@clerk/clerk-react';
 
 
 function App() {
@@ -25,21 +28,21 @@ function App() {
   const userID = String(userId) 
 
   return (
-    <Router>
-      <Navbar/>
- 
+  <Router>
+    <Navbar/>
       <Routes>
-        <Route path="/" element={ <> </> } />
-        <Route path="/dashboard" element={<Dashboard userID={userID}/>} />
-        <Route path="/savings" element={<PiggyBank />} />
-        <Route path="/accounts" element={<AccountsOverviewPage user={userID}/>} />
-        <Route path="/Allocations" element={<AllocationPage user={userID}/>} />
-        <Route path="/expenses" element={<div>Expenses Page (Coming Soon)</div>} />
-        <Route path="/reports" element={<div>Reports Page (Coming Soon)</div>} />
-      </Routes>
-      
-      <Footer/>
-    </Router>
+        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/" element={ <ProtectedRoute> <></> </ProtectedRoute>} />
+        <Route path="/savings" element={ <PiggyBank/>} />
+        <Route path="/dashboard" element={<ProtectedRoute> <Dashboard userID={userID}/> </ProtectedRoute>} />
+        <Route path="/accounts" element={<ProtectedRoute> <AccountsOverviewPage user={userID}/> </ProtectedRoute>} />
+        <Route path="/Allocations" element={<ProtectedRoute> <AllocationPage user={userID}/> </ProtectedRoute>} />
+        <Route path="/expenses" element={<ProtectedRoute> <div>Expenses Page (Coming Soon)</div> </ProtectedRoute>} />
+        <Route path="/reports" element={<ProtectedRoute> <div>Reports Page (Coming Soon)</div> </ProtectedRoute>} />
+        <Route path="/login" element={<SignedOut> <SignedOutPage/> </SignedOut>}/>
+    </Routes>
+    <Footer/>
+  </Router>
   )
 }
 
