@@ -29,7 +29,7 @@ export const accountSchemas = {
     // GET /accounts/:id - fetch accounts by userID
     getAccountsByUser: {
         params: Joi.object({
-            id: Joi.string().required().messages({
+            userID: Joi.string().required().messages({
                 "any.required": "User ID is required",
                 "string.empty": "User ID cannot be empty",
             }),
